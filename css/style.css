@@ -5,6 +5,13 @@
     margin: 0;
 }
 
+/*********** Colors var ***********/
+:root {
+    --primary-color: #901C1C;
+    --secondary-color: #D3573C;
+    --tertiary-color: #FAFAFA;
+}
+
 body {
     width: 100%;
     min-height: 100dvh;
@@ -20,7 +27,7 @@ header {
 }
 
 h1 {
-    color: #901C1C;
+    color: var(--primary-color);
 }
 
 .logo {
@@ -71,7 +78,7 @@ h1 {
 }
 
 .photographer_section .figure_content h3 {
-    color: #901C1C;
+    color: var(--primary-color);
     font-size: 0.813rem;
 }
 
