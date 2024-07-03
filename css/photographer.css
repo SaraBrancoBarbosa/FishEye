@@ -1,3 +1,5 @@
+/*********** Form ***********/
+
 .contact_modal {
     display: none;
     position: fixed;
@@ -11,7 +13,7 @@
 }
 
 .photograph-header {
-    background-color: #FAFAFA;
+    background-color: var(--tertiary-color);
     height: 300px;
     margin: 0 100px;
 }
@@ -24,10 +26,19 @@
     width: 170px;
     height: 70px;
     border: none;
-    background-color: #901C1C;
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    transition: 400ms ease;
+}
+
+.contact_button:hover, .contact_button:focus {
+    font-weight: bold;
+    color: black;
+    background-color: var(--secondary-color);
+    transition: 400ms ease;
 }
 
 .modal {
@@ -93,7 +104,7 @@ form input {
 }
 
 form input:focus-visible {
-    outline: 2px solid #901C1C;
+    outline: 2px solid var(--primary-color);
 }
 
 textarea {
@@ -107,13 +118,13 @@ textarea {
   }
 
 textarea:focus-visible {
-    outline: 2px solid #901C1C;
+    outline: 2px solid var(--primary-color);
 }
 
 .formData[data-error]::after {
     content: attr(data-error);
     font-size: 1.25rem;
-    color: #901C1C;
+    color: var(--primary-color);
     display: block;
     margin-top: 7px;
     margin-bottom: 7px;
@@ -131,7 +142,7 @@ textarea:focus-visible {
     border: 2px solid #e54858;
   }
 
-  /*********** Modal animation ***********/
+/*********** Modal animation ***********/
 
 @keyframes modalopen {
     from {

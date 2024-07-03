@@ -8,8 +8,9 @@
 /*********** Colors var ***********/
 :root {
     --primary-color: #901C1C;
-    --secondary-color: #D3573C;
+    --secondary-color: #DB8876;
     --tertiary-color: #FAFAFA;
+    --quartiary-color: #D3573C;
 }
 
 body {
@@ -64,7 +65,7 @@ h1 {
 }
 
 .photographer_section .figure_main h2 {
-    color: #D3573C;
+    color: var(--quartiary-color);
     font-size: 2.25rem;
 }
 
