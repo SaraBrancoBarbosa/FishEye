@@ -1,42 +1,46 @@
-function photographerTemplate(data) {
-    const { name, portrait, city, country, tagline, price } = data;
+function photographerTemplate(photographer) {
+    const { name, portrait, city, country, tagline, price } = photographer;
 
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
+        const divMain = document.createElement('div');
+        divMain.classList.add("div_main");
+
         const figure = document.createElement('figure');
 
-        const figureMain = document.createElement('div');
-        figureMain.setAttribute("class", "figure_main");
-
-        const figureContent = document.createElement('div');
-        figureContent.setAttribute("class", "figure_content");
-
         const img = document.createElement('img');
-        img.setAttribute("src", picture)
+        img.setAttribute("src", picture);
 
+        const figCaption = document.createElement('figcaption');
+     
         const h2 = document.createElement('h2');
         h2.textContent = name;
+
+        const divContent = document.createElement('div');
+        divContent.classList.add("div_content");
 
         const h3 = document.createElement('h3');
         h3.textContent = city + ', ' + country;
 
         const taglineElement = document.createElement('p');
+        taglineElement.classList.add("div_content_tagline");
         taglineElement.textContent = tagline;
 
         const priceElement = document.createElement('p');
-        priceElement.setAttribute("class", "figure_content_price");
+        priceElement.classList.add("div_content_price");
         priceElement.textContent = price + '€/jour';
 
-        figure.appendChild(figureMain);
-        figure.appendChild(figureContent);
-        figureMain.appendChild(img);
-        figureMain.appendChild(h2);
-        figureContent.appendChild(h3);
-        figureContent.appendChild(taglineElement);
-        figureContent.appendChild(priceElement);
+        divMain.appendChild(figure);
+        figure.appendChild(img);
+        figure.appendChild(figCaption);
+        figCaption.appendChild(h2);
+        divMain.appendChild(divContent);
+        divContent.appendChild(h3);
+        divContent.appendChild(taglineElement);
+        divContent.appendChild(priceElement);
 
-        return (figure);
+        return (divMain);
     }
-    return { name, picture, getUserCardDOM }
+    return { name, picture, city, country, tagline, price, getUserCardDOM }
 }
