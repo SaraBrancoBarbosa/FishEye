@@ -20,7 +20,7 @@ const stopPropagation = (event) => {
 }
 
 function launchModal() {
-	modal.style.display = "block";
+	modal.style.display = "flex";
     document.body.style.overflow = "hidden"; 
     modal.addEventListener("click", closeModal); 
     modal.querySelector(".modal").addEventListener("click", stopPropagation);
@@ -92,7 +92,7 @@ const validateEmail = (element) => {
       element.parentNode.setAttribute("data-error-visible", true);
 
     // Interdire les chevrons  
-    } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-]\<\>+$/).test(userMessageValue)) {
+    } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-][^\<\>]+$/).test(userMessageValue)) {
       result = false;
       element.parentNode.dataset.error="Caractères invalides."
       element.parentNode.setAttribute("data-error-visible", true);
