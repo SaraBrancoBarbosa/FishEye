@@ -2,12 +2,14 @@
 
 .contact_modal {
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
-    height: 100%;
-    width: 100%;
+    right: 0;
+    bottom: 0;
     overflow: auto;
     background-color: rgba(196, 196, 196, 0.4);
 }
@@ -50,10 +52,11 @@
     background-color: #DB8876;
     width: 100%;
     max-width: 500px;
+    max-height: calc(100dvh - 70px);
     padding: 35px;
-    margin: 5% auto;
     box-shadow: -5px 10px 30px 0 rgba(0,0,0,0.25);
     overflow: hidden;
+    overflow-y: auto;
     position: relative;
     animation-name: modalopen;
     animation-duration: 0.8s;
@@ -101,6 +104,7 @@ form input {
     border-radius: 5px;
     padding: 0 8px;
     font-size: 1.25rem;
+    transition: 0.3s;
 }
 
 form input:focus-visible {
@@ -115,6 +119,7 @@ textarea {
     resize: none;
     padding: 8px;
     font-size: 1.25rem;
+    transition: 0.3s;
   }
 
 textarea:focus-visible {
@@ -132,15 +137,16 @@ textarea:focus-visible {
     line-height: 0.3;
     opacity: 0;
     transition: 0.3s;
-  }
+}
   
-  .formData[data-error-visible="true"]::after {
+.formData[data-error-visible="true"]::after {
     opacity: 1;
-  }
-  
-  .formData[data-error-visible="true"] .text-control {
-    border: 2px solid #e54858;
-  }
+}
+
+.formData[data-error-visible="true"] .text-control {
+    background-color: #FFD7D7;
+    transition: 0.3s;
+}
 
 /*********** Modal animation ***********/
 
