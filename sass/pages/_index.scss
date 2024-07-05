@@ -6,54 +6,54 @@
     gap: 70px;
     padding-top: 50px;
     padding-bottom: 90px;
-}
+    
+    .div_main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-.photographer_section .div_main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    figure {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        img {
+            height: 200px;
+            width: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            @include profile-shadow;
+        }
+    }
 
-.photographer_section figure {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    figcaption h2 {
+        color: $quaternary-color;
+        font-size: 2.25rem;
+    }
 
-.photographer_section figure img {
-    height: 200px;
-    width: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-    @include profile-shadow;
-}
+    .div_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+    
+        h3 {
+            color: $primary-color;
+            font-size: 0.813rem;
+        }
 
-.photographer_section figcaption h2 {
-    color: $quaternary-color;
-    font-size: 2.25rem;
-}
+        .tagline {
+            font-size: 0.625rem;
+        }
 
-.photographer_section .div_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 100%;
-}
-
-.photographer_section .div_content h3 {
-    color: $primary-color;
-    font-size: 0.813rem;
-}
-
-.photographer_section .div_content_tagline {
-    font-size: 0.625rem;
-}
-
-.photographer_section .div_content_price {
-    color: #757575;
-    font-size: 0.563rem;
+        .price {
+            color: #757575;
+            font-size: 0.563rem;
+        }
+    }
 }
