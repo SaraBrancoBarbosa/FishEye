@@ -1,4 +1,4 @@
-/*********** Form ***********/
+/*********** Modal for contact form ***********/
 
 .contact_modal {
     display: none;
@@ -14,35 +14,6 @@
     background-color: rgba(196, 196, 196, 0.4);
 }
 
-.photograph-header {
-    background-color: var(--tertiary-color);
-    height: 300px;
-    margin: 0 100px;
-}
-
-.contact_button {
-    font-size: 1.125rem;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: 400ms ease;
-}
-
-.contact_button:hover, .contact_button:focus {
-    font-weight: bold;
-    color: black;
-    background-color: var(--secondary-color);
-    transition: 400ms ease;
-}
-
 .modal {
     display: flex;
     flex-direction: column;
@@ -54,7 +25,7 @@
     max-width: 500px;
     max-height: calc(100dvh - 70px);
     padding: 35px;
-    box-shadow: -5px 10px 30px 0 rgba(0,0,0,0.25);
+    @include contact-shadow;
     overflow: hidden;
     overflow-y: auto;
     position: relative;
@@ -93,7 +64,7 @@ form div {
     display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: self-start;
+    align-items: flex-start;
     padding-bottom: 5px;
 }
 
@@ -108,7 +79,7 @@ form input {
 }
 
 form input:focus-visible {
-    outline: 2px solid var(--primary-color);
+    outline: 2px solid $primary-color;
 }
 
 textarea {
@@ -123,13 +94,13 @@ textarea {
   }
 
 textarea:focus-visible {
-    outline: 2px solid var(--primary-color);
+    outline: 2px solid $primary-color;
 }
 
 .formData[data-error]::after {
     content: attr(data-error);
     font-size: 1.25rem;
-    color: var(--primary-color);
+    color: $primary-color;
     display: block;
     margin-top: 7px;
     margin-bottom: 7px;
@@ -146,16 +117,4 @@ textarea:focus-visible {
 .formData[data-error-visible="true"] .text-control {
     background-color: #FFD7D7;
     transition: 0.3s;
-}
-
-/*********** Modal animation ***********/
-
-@keyframes modalopen {
-    from {
-        opacity: 0;
-        transform: translateY(-150px);
-    }
-    to {
-        opacity: 1;
-    }
 }

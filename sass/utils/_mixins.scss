@@ -1,0 +1,11 @@
+// Shadow for photographer's profile picture
+
+@mixin profile-shadow {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+// Shadow for contact form modal
+
+@mixin contact-shadow {
+    box-shadow: -5px 10px 30px 0 rgba(0,0,0,0.25);
+}
