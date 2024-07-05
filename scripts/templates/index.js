@@ -5,12 +5,12 @@ function indexTemplate(photographer) {
 
     function getUserCardDOM() {
         const divMain = document.createElement('div');
-        divMain.classList.add("div_main");
+        divMain.classList.add('div_main');
 
         const figure = document.createElement('figure');
 
         const img = document.createElement('img');
-        img.setAttribute("src", picture);
+        img.setAttribute('src', picture);
 
         const figCaption = document.createElement('figcaption');
      
@@ -18,17 +18,17 @@ function indexTemplate(photographer) {
         h2.textContent = name;
 
         const divContent = document.createElement('div');
-        divContent.classList.add("div_content");
+        divContent.classList.add('div_content');
 
         const h3 = document.createElement('h3');
         h3.textContent = city + ', ' + country;
 
         const taglineElement = document.createElement('p');
-        taglineElement.classList.add("tagline");
+        taglineElement.classList.add('tagline');
         taglineElement.textContent = tagline;
 
         const priceElement = document.createElement('p');
-        priceElement.classList.add("price");
+        priceElement.classList.add('price');
         priceElement.textContent = price + '€/jour';
 
         divMain.appendChild(figure);
