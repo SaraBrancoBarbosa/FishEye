@@ -1,5 +1,42 @@
-.photograph-header {
+.photograph_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: $tertiary-color;
     height: 300px;
-    margin: 0 100px;
+    padding: 0 100px;
+
+    .profile {
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+            font-size: 4rem;
+            color: $quaternary-color;
+        }
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            h2 {
+                font-size: 1.5rem;
+                color: $primary-color;
+            }
+
+            .tagline {
+                font-size: 1.125rem;
+                color: #525252;
+            }
+        }
+    }
+
+    img {
+        height: 200px;
+        width: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        @include profile-shadow;
+    }
 }

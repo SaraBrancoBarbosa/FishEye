@@ -10,13 +10,17 @@
     border: 2px solid $primary-color;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
+    //margin-top: 20px;
     transition: 400ms ease;
+
+    &:hover, &:focus {
+        font-weight: bold;
+        color: black;
+        background-color: $secondary-color;
+        transition: 400ms ease;
+    }
 }
 
-.contact_button:hover, .contact_button:focus {
-    font-weight: bold;
-    color: black;
-    background-color: $secondary-color;
-    transition: 400ms ease;
+.submit_button {
+    margin-top: 20px;
 }
