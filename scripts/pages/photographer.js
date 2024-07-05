@@ -1,1 +1,35 @@
 //Mettre le code JavaScript lié à la page photographer.html
+
+async function getPhotographers() {
+    
+    // Récupération des données depuis le fichier JSON   
+    const database = await fetch('data/database.json')
+    .then(response => response.json());    
+    
+    // On retourne le tableau photographers une fois les données récupérées
+    return (
+        {
+        photographers: database.photographers
+        }
+    )
+}
+
+// Changer tout ça en bas
+async function displayData(photographers) {
+    const photographHeader = document.querySelector(".photograph_header");
+
+    photographers.forEach((photographer) => {
+        const photographerModel = photographerTemplate(photographer);
+        const userCardDOM = photographerModel.getUserCardDOM();
+        photographHeader.appendChild(userCardDOM);
+    });
+}
+
+async function init() {
+    // Récupère les datas des photographes
+    const { photographers } = await getPhotographers();
+    displayData(photographers);
+}
+
+init();
+    

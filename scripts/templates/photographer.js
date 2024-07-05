@@ -1,46 +1,41 @@
 function photographerTemplate(photographer) {
-    const { name, portrait, city, country, tagline, price } = photographer;
+    const { name, portrait, city, country, tagline } = photographer;
 
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
-        const divMain = document.createElement('div');
-        divMain.classList.add("div_main");
+        const photographHeader = document.querySelector('.photograph_header');
 
-        const figure = document.createElement('figure');
+        const photographProfile = document.createElement('div');
+        photographProfile.classList.add('profile');
 
-        const img = document.createElement('img');
-        img.setAttribute("src", picture);
+        const h1 = document.createElement('h1');
+        h1.textContent = name;
 
-        const figCaption = document.createElement('figcaption');
-     
+        const photographProfileText = document.createElement('div');
+        photographProfileText.classList.add('text');
+
         const h2 = document.createElement('h2');
-        h2.textContent = name;
+        h2.textContent = city + ', ' + country;
 
-        const divContent = document.createElement('div');
-        divContent.classList.add("div_content");
+        const photographerTaglineElement = document.createElement('p');
+        photographerTaglineElement.classList.add('tagline');
+        photographerTaglineElement.textContent = tagline;
 
-        const h3 = document.createElement('h3');
-        h3.textContent = city + ', ' + country;
+        const btnContact = document.querySelector('.contact_button');
 
-        const taglineElement = document.createElement('p');
-        taglineElement.classList.add("div_content_tagline");
-        taglineElement.textContent = tagline;
+        const photographerImg = document.createElement('img');
+        photographerImg.setAttribute('src', picture);
 
-        const priceElement = document.createElement('p');
-        priceElement.classList.add("div_content_price");
-        priceElement.textContent = price + '€/jour';
+        photographHeader.appendChild(photographProfile);
+        photographProfile.appendChild(h1);
+        photographProfile.appendChild(photographProfileText);
+        photographProfileText.appendChild(h2);
+        photographProfileText.appendChild(photographerTaglineElement);
+        photographHeader.appendChild(btnContact);
+        photographHeader.appendChild(photographerImg);
 
-        divMain.appendChild(figure);
-        figure.appendChild(img);
-        figure.appendChild(figCaption);
-        figCaption.appendChild(h2);
-        divMain.appendChild(divContent);
-        divContent.appendChild(h3);
-        divContent.appendChild(taglineElement);
-        divContent.appendChild(priceElement);
-
-        return (divMain);
+        return (photographHeader);
     }
-    return { name, picture, city, country, tagline, price, getUserCardDOM }
+    return { name, picture, city, country, tagline, getUserCardDOM }
 }
