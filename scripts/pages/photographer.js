@@ -16,12 +16,14 @@ async function getPhotographers() {
 
 // Changer tout ça en bas
 async function displayData(photographers) {
-    const photographHeader = document.querySelector(".photograph_header");
+    const photographerHeader = document.querySelector(".photographer_header");
+    const photographerMedias = document.querySelector('.photograph_medias');
 
     photographers.forEach((photographer) => {
         const photographerModel = photographerTemplate(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographHeader.appendChild(userCardDOM);
+        const UserCardProfile = photographerModel.getUserCardProfile();
+        photographerHeader.appendChild(UserCardProfile);
+        photographerMedias.appendChild(UserCardProfile);
     });
 }
 
