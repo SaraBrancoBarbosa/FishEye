@@ -1,7 +1,7 @@
 function indexTemplate(photographer) {
     const { name, portrait, city, country, tagline, price } = photographer;
 
-    const picture = `assets/photographers/${portrait}`;
+    const profile = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
         const divMain = document.createElement('div');
@@ -10,7 +10,7 @@ function indexTemplate(photographer) {
         const figure = document.createElement('figure');
 
         const img = document.createElement('img');
-        img.setAttribute('src', picture);
+        img.setAttribute('src', profile);
 
         const figCaption = document.createElement('figcaption');
      
@@ -42,5 +42,5 @@ function indexTemplate(photographer) {
 
         return (divMain);
     }
-    return { name, picture, city, country, tagline, price, getUserCardDOM }
+    return { name, profile, city, country, tagline, price, getUserCardDOM }
 }
