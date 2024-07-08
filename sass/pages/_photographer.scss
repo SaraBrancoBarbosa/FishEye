@@ -1,10 +1,17 @@
-.photograph_header {
+.main_photographer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 100px;
+}
+
+.photographer_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: $tertiary-color;
     height: 300px;
-    padding: 0 100px;
+    padding: 0 50px;
 
     .profile {
         display: flex;
@@ -38,5 +45,28 @@
         object-fit: cover;
         border-radius: 50%;
         @include profile-shadow;
+    }
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+.photographer_medias {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    padding-top: 50px;
+    padding-bottom: 90px;
+
+    figure {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
