@@ -1,0 +1,1 @@
+import { indexTemplate } from "templates.index.js";

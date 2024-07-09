@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="sass/style.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <script src="/scripts/templates/photographer.js" defer></script>
     <script src="/scripts/pages/photographer.js" defer></script>
     <script src="/scripts/utils/contactForm.js" defer></script>
@@ -30,19 +31,41 @@
 
       <div class="filter">
         <p>Trier par</p>
-        <button class="filter_button contact_button">Popularité</button>
+        <button class="filter_button">
+          Popularité
+          <i class="fa-solid fa-chevron-up filter-icon"></i>
+        </button>
       </div>
 
+      <!-- Ces paragraphes servent visuellement pour le CSS, je les enlèverai plus tard (à part la première div) !-->
       <div class="photographer_medias">
         <figure>
-          <img>
+          <img src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
           <figcaption>
             <h3>Arc-en-ciel</h3>
             <div class="like_counter">
               <p>12</p>
-              <svg>
-                coeur
-              </svg>
+              
+            </div>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
+          <figcaption>
+            <h3>Arc-en-ciel</h3>
+            <div class="like_counter">
+              <p>12</p>
+              
+            </div>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
+          <figcaption>
+            <h3>Arc-en-ciel</h3>
+            <div class="like_counter">
+              <p>12</p>
+              
             </div>
           </figcaption>
         </figure>
