@@ -5,12 +5,10 @@
     padding: 11px;
     width: 170px;
     height: 70px;
-    border: none;
     background-color: $primary-color;
     border: 2px solid $primary-color;
     border-radius: 5px;
     cursor: pointer;
-    //margin-top: 20px;
     transition: 400ms ease;
 
     &:hover, &:focus {
@@ -23,4 +21,20 @@
 
 .submit_button {
     margin-top: 20px;
+}
+
+.filter_button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: white;
+    padding: 20px;
+    width: 170px;
+    height: 70px;
+    background-color: $primary-color;
+    border: 2px solid $primary-color;
+    border-radius: 5px;
+    cursor: pointer;
 }
