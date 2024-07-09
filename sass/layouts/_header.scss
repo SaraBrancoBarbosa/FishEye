@@ -3,15 +3,30 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
     height: 90px;
     padding: 10px 100px;
 
+    .logo {
+        height: 50px;
+    }
+    
     h1 {
         color: $primary-color;
         font-size: 2.25rem;
     }
 
-    .logo {
-        height: 50px;
+    @include media-phone {
+        grid-template-columns: 1fr;
+        padding: 10px 30px;
+
+        .logo {
+            height: 30px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            text-align: end;
+        }
     }
 }

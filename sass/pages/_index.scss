@@ -56,4 +56,12 @@
             font-size: 0.563rem;
         }
     }
+
+    @include media-tablet {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include media-phone {
+        grid-template-columns: 1fr;
+    }
 }
