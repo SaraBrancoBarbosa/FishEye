@@ -10,6 +10,8 @@
     <script src="/scripts/templates/photographer.js" defer></script>
     <script src="/scripts/pages/photographer.js" defer></script>
     <script src="/scripts/utils/contactForm.js" defer></script>
+    <script src="/scripts/utils/filter.js" defer></script>
+    <script src="/scripts/utils/lightbox.js" defer></script>
     <title>Fisheye - Photographes </title>
   </head>
 
@@ -40,7 +42,7 @@
       <!-- Ces paragraphes servent visuellement pour le CSS, je les enlèverai plus tard (à part la première div) !-->
       <div class="photographer_medias">
         <figure>
-          <img src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
+          <img class="open_modal" src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
           <figcaption>
             <h3>Arc-en-ciel</h3>
             <div class="like_counter">
@@ -50,7 +52,7 @@
           </figcaption>
         </figure>
         <figure>
-          <img src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
+          <img class="open_modal" src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
           <figcaption>
             <h3>Arc-en-ciel</h3>
             <div class="like_counter">
@@ -60,7 +62,7 @@
           </figcaption>
         </figure>
         <figure>
-          <img src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
+          <img class="open_modal" src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
           <figcaption>
             <h3>Arc-en-ciel</h3>
             <div class="like_counter">
@@ -76,10 +78,10 @@
     <!-- Form -->
     <div class="contact_modal">
 			<div class="modal">
-				<header>
+				<div class="header_form">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" class="close_contact_button"/>
-        </header>
+          <img src="./assets/icons/close_form.svg" class="close_contact_button"/>
+        </div>
 				<form
           method="get"
           onsubmit="validate();"
@@ -129,6 +131,22 @@
 				</form>
 			</div>
 		</div>
+
+    <!-- Lightbox -->
+     <div class="lightbox_modal">
+      <div class="modal">
+        <img src="./assets/icons/close_lightbox.svg" class="close_media_button"/>
+        <img src="./assets/icons/previous.svg"/>
+        <figure>
+          <img src="./assets/photographers/Mimi/Animals_Rainbow.jpg" class="lightbox_media"/>
+          <figcaption>
+            <h3>Arc-en-ciel</h3>
+          </figcaption>
+        </figure>
+        <img src="./assets/icons/next.svg"/>
+
+      </div>
+     </div>
     
   </body>
 </html>
