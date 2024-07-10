@@ -1,8 +1,11 @@
 .main_photographer {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
     padding: 0 100px;
+    width: 100%;
 
     @include media-phone {
         padding: 20px;
@@ -16,6 +19,7 @@
     background-color: $tertiary-color;
     height: 300px;
     padding: 0 50px;
+    width: 100%;
 
     .profile {
         display: flex;
@@ -56,11 +60,10 @@
     }
 
     @include media-tablet {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+        flex-direction: column;
+        align-items: center;
         gap: 30px;
         padding: 20px 20px;
-        align-items: normal;
         height: auto;
     }
 }
@@ -71,6 +74,7 @@
     gap: 20px;
     font-size: 1.125rem;
     font-weight: bold;
+    width: 100%;
 
     .filter-icon {
         font-size: 1rem;
@@ -78,20 +82,26 @@
     }
 
     // à adapter ensuite en fonction du js
-    &:active, &:hover {
-        .filter-icon {
-            transform: scaleY(-1);
-            transition: 400ms ease;
+    .filter_button {
+        &:active, &:hover {
+            .filter-icon {
+                transform: scaleY(-1);
+                transition: 400ms ease;
+            }
         }
     }
 }
 
 .photographer_medias {
+    //display: flex;
+    //justify-content: space-between;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));;
+    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    justify-items: center;
     gap: 30px;
     padding-top: 40px;
     padding-bottom: 40px;
+    width: 100%;
 
     figure {
         display: flex;
