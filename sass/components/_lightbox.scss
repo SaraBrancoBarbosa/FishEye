@@ -1,0 +1,57 @@
+.lightbox_modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    background-color: rgba(196, 196, 196, 0.4);
+
+    .modal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        //border-radius: 5px;
+        //background-color: none;
+        width: 100%;
+        max-width: 850px;
+        max-height: calc(100dvh - 70px);
+        padding: 35px;
+        overflow: hidden;
+        overflow-y: auto;
+        position: relative;
+        animation-name: modalopen;
+        animation-duration: 0.8s;
+
+        .close_media_button {
+            cursor: pointer;
+            height: 35px;
+            position: absolute;
+            right: 25px;
+            top: 0;
+            cursor: pointer;
+        }
+
+        figure {
+            background-color: white;
+            border-radius: 5px;
+
+            .lightbox_media {
+                max-width: 1050px;
+                max-height: 900px;
+                border-radius: 5px;
+            }
+    
+            h3 {
+                font-size: 1.5rem;
+                color: $primary-color;
+                padding: 10px;
+            }
+        }
+    }
+}
