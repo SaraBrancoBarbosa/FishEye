@@ -13,9 +13,10 @@
 }
 
 .photographer_header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    justify-items: center;
     align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     background-color: $tertiary-color;
     height: 300px;
     padding: 0 50px;
@@ -60,8 +61,8 @@
     }
 
     @include media-tablet {
+        display: flex;
         flex-direction: column;
-        align-items: center;
         gap: 30px;
         padding: 20px 20px;
         height: auto;
@@ -75,19 +76,40 @@
     font-size: 1.125rem;
     font-weight: bold;
     width: 100%;
+    position: relative;
 
     .filter-icon {
         font-size: 1rem;
         transition: 400ms ease;
+        transform: scaleY(-1);
     }
 
     // à adapter ensuite en fonction du js
     .filter_button {
         &:active, &:hover {
+            border-radius: 5px 5px 0px 0px;
+            //border-bottom: 2px solid white;
+
             .filter-icon {
-                transform: scaleY(-1);
+                transform: scaleY(1);
                 transition: 400ms ease;
             }
+        }
+    }
+
+    .filter_dropdown {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 41px;
+    
+        .first_filter {
+            border-radius: 0px;
+        }
+    
+        .last_filter {
+            border-radius: 0px 0px 5px 5px;
         }
     }
 }
@@ -110,7 +132,7 @@
         align-items: center;
         width: 350px;
 
-        img {
+        img, video {
         height: 300px;
         width: 350px;
         object-fit: cover;
