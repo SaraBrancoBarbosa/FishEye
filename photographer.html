@@ -33,44 +33,24 @@
 
       <div class="filter">
         <p>Trier par</p>
-        <button class="filter_button">
-          Popularité
-          <i class="fa-solid fa-chevron-up filter-icon"></i>
-        </button>
+        <div class="filter_box">
+          <button class="filter_button">
+            Popularité
+            <i class="fa-solid fa-chevron-up filter-icon"></i>
+          </button>
+          <ul class="filter_dropdown">
+            <li class="filter_button first_filter">
+              Date
+            </li>
+            <li class="filter_button last_filter">
+              Titre
+            </li>
+          </ul>
+        </div>
       </div>
 
       <!-- Ces paragraphes servent visuellement pour le CSS, je les enlèverai plus tard (à part la première div) !-->
-      <div class="photographer_medias">
-        <figure>
-          <img class="open_modal" src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
-          <figcaption>
-            <h3>Arc-en-ciel</h3>
-            <div class="like_counter">
-              <p>12</p>
-              
-            </div>
-          </figcaption>
-        </figure>
-        <figure>
-          <img class="open_modal" src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
-          <figcaption>
-            <h3>Arc-en-ciel</h3>
-            <div class="like_counter">
-              <p>12</p>
-              
-            </div>
-          </figcaption>
-        </figure>
-        <figure>
-          <img class="open_modal" src="./assets/photographers/Mimi/Animals_Rainbow.jpg">
-          <figcaption>
-            <h3>Arc-en-ciel</h3>
-            <div class="like_counter">
-              <p>12</p>
-              
-            </div>
-          </figcaption>
-        </figure>
+      <div class="photographer_medias">        
       </div>
 
     </main>
@@ -148,5 +128,32 @@
       </div>
      </div>
     
+    <!-- Templates medium -->
+    <template id="template-medium-card-image">
+      <figure>
+        <img class="open_modal medium-card_img" src="">
+        <figcaption>
+          <h3 class="medium-card_title"></h3>
+          <div class="like_counter">
+            <p class="medium-card_likes"></p>
+          </div>
+        </figcaption>
+      </figure>
+    </template>
+
+    <template id="template-medium-card-video">
+      <figure>
+        <video class="open_modal medium-card_video" controls>
+          <source src="">
+        </video>
+        <figcaption>
+          <h3 class="medium-card_title"></h3>
+          <div class="like_counter">
+            <p class="medium-card_likes"></p>
+          </div>
+        </figcaption>
+      </figure>
+    </template>
+
   </body>
 </html>
