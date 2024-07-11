@@ -2,10 +2,9 @@
 
 // DOM elements
 const lightboxModal = document.querySelector(".lightbox_modal");
-const imgOpenModal = document.querySelector(".open_modal");
 const btnCloselightboxModal = document.querySelector(".close_media_button");
 
-/*********** Launching and closing lightbox ***********/
+/*********** Launching and closing filter ***********/
 
 // Function to prevent further propagation of the current event
 const stopMediaPropagation = (event) => { 
@@ -16,10 +15,9 @@ function launchLightboxModal() {
 	lightboxModal.style.display = "flex";
     document.body.style.overflow = "hidden"; 
     lightboxModal.addEventListener("click", closeLightboxModal); 
-    lightboxModal.querySelector(".lightbox_media").addEventListener("click", stopMediaPropagation);
+    lightboxModal.querySelector(".modal").addEventListener("click", stopMediaPropagation);
 
     btnCloselightboxModal.addEventListener("click", closeLightboxModal);
-
 }
 
 function closeLightboxModal() {
@@ -28,7 +26,3 @@ function closeLightboxModal() {
     lightboxModal.removeEventListener("click", closeLightboxModal);
     lightboxModal.querySelector(".modal").removeEventListener("click", stopMediaPropagation);
 }
-
-// Launches modal event by clicking on the button
-//imgOpenModal.forEach((btn) => btn.addEventListener("click", launchLightboxModal));
-imgOpenModal.addEventListener("click", launchLightboxModal);
