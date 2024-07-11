@@ -1,5 +1,5 @@
-function indexTemplate(photographer) {
-    const { name, portrait, city, country, tagline, price } = photographer;
+export function indexTemplate(photographer) {
+    const { id, name, portrait, city, country, tagline, price } = photographer;
 
     const profile = `assets/photographers/${portrait}`;
 
@@ -7,6 +7,9 @@ function indexTemplate(photographer) {
         const divMain = document.createElement('div');
         divMain.classList.add('div_main');
 
+        const link = document.createElement('a');
+        link.href = `/photographer.html?id=${id}`;
+        
         const figure = document.createElement('figure');
 
         const img = document.createElement('img');
@@ -31,7 +34,8 @@ function indexTemplate(photographer) {
         priceElement.classList.add('price');
         priceElement.textContent = price + '€/jour';
 
-        divMain.appendChild(figure);
+        divMain.appendChild(link);
+        link.appendChild(figure);
         figure.appendChild(img);
         figure.appendChild(figCaption);
         figCaption.appendChild(h2);

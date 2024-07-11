@@ -1,5 +1,5 @@
 function photographerTemplate(photographer) {
-    const { name, portrait, city, country, tagline, media, title, likes } = photographer;
+    const { name, portrait, city, country, tagline, media } = photographer;
 
     const profile = `assets/photographers/${portrait}`;
     const medias = `assets/photographers/${media}`;
@@ -39,35 +39,42 @@ function photographerTemplate(photographer) {
         return (photographerHeader);
     }
 
-    function getUserMedias() {
-        const photographerMedias = document.querySelector('.photograph_medias');
+    // On retourne la vidéo ou l'image
+    function getUserMedium(photographer, medium) {
+        
+        //on coupe pour le nom :D
+        const path = '/assets/photographers/'+(photographer.name.split(' ')[0].replaceAll('-', ' '));
 
-        const figure = document.createElement('figure');
-
-        const imgMedias = document.createElement('img');
-        imgMedias.setAttribute('src', medias);
-
-        const figCaption = document.createElement('figcaption');
-
-        const h3 = document.createElement('h3');
-        h3.textContent = title;
-
-        const divMediasContent = document.createElement('div');
-        divMediasContent.classList.add('like_counter');
-
-        const likesElement = document.createElement('p');
-        likesElement.textContent = likes;
-
-        photographerMedias.appendChild(figure);
-        figure.appendChild(imgMedias);
-        figure.appendChild(figCaption);
-        figCaption.appendChild(h3);
-        figCaption.appendChild(divMediasContent);
-        divMediasContent.appendChild(likesElement);
-
-        return (photographerMedias);
+        if (medium.video) {
+            return getUserVideo(path,medium)
+        } 
+        return getUserImage(path, medium)
     }
 
-    
-    return { name, profile, city, country, tagline, media, title, likes, getUserCardProfile, getUserMedias }
+    // Faire pareil avec vidéo :D
+    function getUserImage(path,medium) {
+
+        const {image, title, likes} = medium;
+        const template = document.getElementById('template-medium-card-image');
+        const card = template.content.cloneNode(true);
+        const img = card.querySelector('.medium-card_img')
+        img.src = `${path}/${image}`
+        
+        card.querySelector('.medium-card_title').textContent = `${title}`
+        card.querySelector('.medium-card_likes').textContent = `${likes}`
+        
+        return card;
+    }
+
+    function getUserVideo(path,medium) {
+
+        const template = document.getElementById('template-medium-card-video');
+        const card = template.content.cloneNode(true);
+
+        card.querySelector('.medium-card_video').src = `${path}/${medium.video}`
+
+        return card;
+    }
+   
+    return { getUserCardProfile, getUserMedium }
 }

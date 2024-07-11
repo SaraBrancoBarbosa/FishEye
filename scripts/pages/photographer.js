@@ -1,7 +1,8 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-async function getPhotographers() {
+async function getPhotographer() {
     
+    const id = new URLSearchParams(window.location.search).get('id')
     // Récupération des données depuis le fichier JSON   
     const database = await fetch('data/database.json')
     .then(response => response.json());    
@@ -9,28 +10,43 @@ async function getPhotographers() {
     // On retourne le tableau photographers une fois les données récupérées
     return (
         {
-        photographers: database.photographers
+        photographer: database.photographers.find(p => ''+p.id === ''+id), 
+        media:database.media.filter(m => ''+m.photographerId === ''+id)
         }
     )
 }
 
 // Changer tout ça en bas
-async function displayData(photographers) {
-    const photographerHeader = document.querySelector(".photographer_header");
-    const photographerMedias = document.querySelector('.photograph_medias');
+async function displayData(photographer, media) {
+    const photographerMedias = document.querySelector('.photographer_medias');
 
-    photographers.forEach((photographer) => {
+    
+        console.log("photographerMedias", photographerMedias)
         const photographerModel = photographerTemplate(photographer);
-        const UserCardProfile = photographerModel.getUserCardProfile();
-        photographerHeader.appendChild(UserCardProfile);
-        photographerMedias.appendChild(UserCardProfile);
-    });
+        
+        photographerModel.getUserCardProfile();
+        media.forEach(medium => {
+            const card = photographerModel.getUserMedium(photographer, medium)
+            
+            let src = null; 
+            if (medium.video) {
+                src = card.querySelector('.medium-card_video')
+              } else {
+               src = card.querySelector('.medium-card_img')
+              }
+
+            src.onclick = () => {
+                launchLightboxModal()
+            }
+            photographerMedias.appendChild(card)
+        })
+    
 }
 
 async function init() {
     // Récupère les datas des photographes
-    const { photographers } = await getPhotographers();
-    displayData(photographers);
+    const { photographer, media } = await getPhotographer();
+    displayData(photographer, media);
 }
 
 init();

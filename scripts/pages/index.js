@@ -1,3 +1,5 @@
+import { indexTemplate } from "../templates/index.js";
+
 async function getPhotographers() {
     
     // Récupération des données depuis le fichier JSON   
@@ -22,11 +24,8 @@ async function displayData(photographers) {
     });
 }
 
-async function init() {
+export async function init() {
     // Récupère les datas des photographes
     const { photographers } = await getPhotographers();
     displayData(photographers);
 }
-
-init();
-    
