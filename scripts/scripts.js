@@ -1,1 +1,6 @@
-import { indexTemplate } from "templates.index.js";
+import { init } from "./pages/index.js";
+
+
+window.onload = () => {
+    init()
+}
