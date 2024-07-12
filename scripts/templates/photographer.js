@@ -2,8 +2,9 @@ function photographerTemplate(photographer) {
     const { name, portrait, city, country, tagline, media } = photographer;
 
     const profile = `assets/photographers/${portrait}`;
-    const medias = `assets/photographers/${media}`;
+    //const medias = `assets/photographers/${media}`;
 
+    // Header informations about the photographer
     function getUserCardProfile() {
         const photographerHeader = document.querySelector('.photographer_header');
 
@@ -39,10 +40,10 @@ function photographerTemplate(photographer) {
         return (photographerHeader);
     }
 
-    // On retourne la vidéo ou l'image
+    // To get the respective medium for each photographer. It contains the img and video functions
     function getUserMedium(photographer, medium) {
         
-        //on coupe pour le nom :D
+        // Cut the names to go to the right folders
         const path = '/assets/photographers/'+(photographer.name.split(' ')[0].replaceAll('-', ' '));
 
         if (medium.video) {
@@ -51,27 +52,35 @@ function photographerTemplate(photographer) {
         return getUserImage(path, medium)
     }
 
-    // Faire pareil avec vidéo :D
+    // To get the images
     function getUserImage(path,medium) {
 
         const {image, title, likes} = medium;
         const template = document.getElementById('template-medium-card-image');
+
+        // On appelle le template du HTML. cloneNode crée un fragment, une balise vide sans nom
         const card = template.content.cloneNode(true);
-        const img = card.querySelector('.medium-card_img')
-        img.src = `${path}/${image}`
+        const img = card.querySelector('.medium-card_img');
+        img.src = `${path}/${image}`;
         
-        card.querySelector('.medium-card_title').textContent = `${title}`
-        card.querySelector('.medium-card_likes').textContent = `${likes}`
+        card.querySelector('.medium-card_title').textContent = `${title}`;
+        card.querySelector('.medium-card_likes').textContent = `${likes}`;
         
         return card;
     }
 
+    // To get the videos
     function getUserVideo(path,medium) {
 
+        const {videos, title, likes} = medium;
         const template = document.getElementById('template-medium-card-video');
+        
         const card = template.content.cloneNode(true);
+        const video = card.querySelector('.medium-card_video');
+        video.src = `${path}/${medium.video}`;
 
-        card.querySelector('.medium-card_video').src = `${path}/${medium.video}`
+        card.querySelector('.medium-card_title').textContent = `${title}`;
+        card.querySelector('.medium-card_likes').textContent = `${likes}`;
 
         return card;
     }
