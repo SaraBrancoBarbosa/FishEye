@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding: 0 100px;
     width: 100%;
 
     @include media-phone {
@@ -19,7 +18,6 @@
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     background-color: $tertiary-color;
     height: 300px;
-    padding: 0 50px;
     width: 100%;
 
     .profile {
@@ -84,10 +82,10 @@
         transform: scaleY(-1);
     }
 
-    // à adapter ensuite en fonction du js
     .filter_button {
-        &:active, &:hover {
+        &:focus {
             border-radius: 5px 5px 0px 0px;
+            transition: 400ms ease;
             //border-bottom: 2px solid white;
 
             .filter-icon {
@@ -103,6 +101,8 @@
         position: absolute;
         top: 70px;
         left: 41px;
+        animation-name: modalopen;
+        animation-duration: 0.8s;
     
         .first_filter {
             border-radius: 0px;
@@ -115,12 +115,11 @@
 }
 
 .photographer_medias {
-    //display: flex;
-    //justify-content: space-between;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
     justify-items: center;
-    gap: 30px;
+    row-gap: 30px;
+    column-gap: 90px;
     padding-top: 40px;
     padding-bottom: 40px;
     width: 100%;
@@ -131,6 +130,11 @@
         justify-content: center;
         align-items: center;
         width: 350px;
+        transition: 200ms;
+
+            &:hover {
+                transform: scale(1.05);
+            }
 
         img, video {
         height: 300px;
@@ -148,9 +152,27 @@
             font-size: 1.5rem;
             color: $primary-color;
             font-weight: bold;
+            padding-top: 15px;
 
             h3 {
                 font-weight: lighter;
+            }
+        }
+    }
+
+    @include media-phone {
+        grid-template-columns: 1fr;
+        padding: auto;
+        width: auto;
+
+        figure {
+            width: 270px;
+
+            img, video {
+                height: 220px;
+                width: 270px;
+                object-fit: cover;
+                border-radius: 5px;
             }
         }
     }

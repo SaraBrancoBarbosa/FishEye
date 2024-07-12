@@ -5,7 +5,6 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     padding-top: 50px;
-    padding-bottom: 90px;
     
     .div_main {
         display: flex;
@@ -26,6 +25,11 @@
             object-fit: cover;
             border-radius: 50%;
             @include profile-shadow;
+            transition: 200ms;
+
+            &:hover {
+                transform: scale(1.05);
+            }
         }
     }
 

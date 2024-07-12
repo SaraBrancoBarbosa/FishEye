@@ -42,6 +42,10 @@
                 max-width: 1050px;
                 max-height: calc(100dvh - 200px);
                 border-radius: 5px;
+
+                @include media-phone {
+                    max-width: 100%;
+                }
             }
     
             h3 {
