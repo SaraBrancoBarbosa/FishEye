@@ -14,6 +14,7 @@ export function indexTemplate(photographer) {
 
         const img = document.createElement('img');
         img.setAttribute('src', profile);
+        img.alt = "";
 
         const figCaption = document.createElement('figcaption');
      
@@ -46,5 +47,5 @@ export function indexTemplate(photographer) {
 
         return (divMain);
     }
-    return { name, profile, city, country, tagline, price, getUserCardDOM }
+    return { getUserCardDOM }
 }
