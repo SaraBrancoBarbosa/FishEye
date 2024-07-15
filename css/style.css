@@ -281,7 +281,7 @@ header h1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
-  padding-top: 50px;
+  padding: 50px 0px;
 }
 .photographer_section .div_main {
   display: flex;
@@ -439,6 +439,13 @@ header h1 {
   animation-name: modalopen;
   animation-duration: 0.8s;
 }
+.filter .filter_dropdown li::after {
+  content: "";
+  border-top: 1px solid white;
+  width: 126px;
+  height: 70px;
+  position: absolute;
+}
 .filter .filter_dropdown .first_filter {
   border-radius: 0px;
 }
@@ -489,6 +496,11 @@ header h1 {
 .photographer_medias figure figcaption h3 {
   font-weight: lighter;
 }
+.photographer_medias figure figcaption .like_counter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 @media screen and (max-width: 768px) {
   .photographer_medias {
     grid-template-columns: 1fr;
@@ -504,5 +516,29 @@ header h1 {
     -o-object-fit: cover;
        object-fit: cover;
     border-radius: 5px;
+  }
+}
+
+.total-likes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-color: #DB8876;
+  border-radius: 5px 5px 0px 0px;
+  height: 68px;
+  width: 376px;
+  bottom: 0;
+  right: 50px;
+  color: black;
+  padding: 0px 20px;
+  font-size: 1.5rem;
+}
+@media screen and (max-width: 768px) {
+  .total-likes {
+    width: 270px;
+    height: 50px;
+    right: 0;
+    font-size: 1.3rem;
   }
 }/*# sourceMappingURL=style.css.map */

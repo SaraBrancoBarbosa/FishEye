@@ -106,7 +106,7 @@
 
         li::after {
             content: "";
-            border-top: 2px solid white;
+            border-top: 1px solid white;
             width: 126px;
             height: 70px;
             position: absolute;
@@ -165,6 +165,12 @@
             h3 {
                 font-weight: lighter;
             }
+
+            .like_counter {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
         }
     }
 
@@ -183,5 +189,28 @@
                 border-radius: 5px;
             }
         }
+    }
+}
+
+.total-likes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    background-color: $secondary-color;
+    border-radius: 5px 5px 0px 0px;
+    height: 68px;
+    width: 376px;
+    bottom: 0;
+    right: 50px;
+    color: black;
+    padding: 0px 20px;
+    font-size: 1.5rem;
+
+    @include media-phone {
+        width: 270px;
+        height: 50px;
+        right: 0;
+        font-size: 1.3rem;
     }
 }
