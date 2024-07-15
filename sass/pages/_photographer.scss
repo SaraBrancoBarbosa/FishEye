@@ -103,6 +103,14 @@
         left: 41px;
         animation-name: modalopen;
         animation-duration: 0.8s;
+
+        li::after {
+            content: "";
+            border-top: 2px solid white;
+            width: 126px;
+            height: 70px;
+            position: absolute;
+        }
     
         .first_filter {
             border-radius: 0px;
