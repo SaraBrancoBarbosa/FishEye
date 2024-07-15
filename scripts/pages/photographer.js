@@ -1,7 +1,8 @@
-//Mettre le code JavaScript lié à la page photographer.html
+import { photographerTemplate } from "../templates/photographer.js"
 
 async function getPhotographer() {
     
+    // Cherche dans la barre URL
     const id = new URLSearchParams(window.location.search).get('id')
     // Récupération des données depuis le fichier JSON   
     const database = await fetch('data/database.json')
@@ -10,8 +11,10 @@ async function getPhotographer() {
     // On retourne le tableau photographers une fois les données récupérées
     return (
         {
-        photographer: database.photographers.find(p => ''+p.id === ''+id), 
-        media:database.media.filter(m => ''+m.photographerId === ''+id)
+            //.find chercher de quoi matcher. ''+p -> on convertit en chaîne de caractères
+            photographer: database.photographers.find(p => ''+p.id === ''+id),
+            // .filter permet de retourner tous les éléments qui correspondent 
+            media:database.media.filter(m => ''+m.photographerId === ''+id)
         }
     )
 }
@@ -43,11 +46,8 @@ async function displayData(photographer, media) {
     
 }
 
-async function init() {
+export async function initPhotographer() {
     // Récupère les datas des photographes
     const { photographer, media } = await getPhotographer();
     displayData(photographer, media);
 }
-
-init();
-    
