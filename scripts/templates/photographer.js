@@ -1,5 +1,5 @@
 export function photographerTemplate(photographer) {
-    const { name, portrait, city, country, tagline, media } = photographer;
+    const { name, portrait, city, country, tagline } = photographer;
 
     const profile = `assets/photographers/${portrait}`;
     //const medias = `assets/photographers/${media}`;
@@ -62,6 +62,7 @@ export function photographerTemplate(photographer) {
         const card = template.content.cloneNode(true);
         const img = card.querySelector('.medium-card_img');
         img.src = `${path}/${image}`;
+        img.alt = "";
         
         card.querySelector('.medium-card_title').textContent = `${title}`;
         card.querySelector('.medium-card_likes').textContent = `${likes}`;
