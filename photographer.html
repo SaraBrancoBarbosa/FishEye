@@ -20,7 +20,7 @@
       <!-- Header -->
       <header>
         <a href="index.html">
-          <img src="assets/images/logo.png" class="logo" alt="Fisheye page des photographes"/>
+          <img src="assets/images/logo.png" class="logo" alt="Logo de Fisheye, lien vers la page d'accueil"/>
         </a>
       </header>
 
@@ -36,7 +36,7 @@
           <div class="filter_box">
             <button class="filter_button">
               Popularité
-              <i class="fa-solid fa-chevron-up filter-icon"></i>
+              <i class="fa-solid fa-chevron-up filter-icon" aria-hidden="true"></i>
             </button>
             <ul class="filter_dropdown">
               <li class="filter_button first_filter">
@@ -59,7 +59,7 @@
         <div class="modal">
           <div class="header_form">
             <h2>Contactez-moi</h2>
-            <img src="./assets/icons/close_form.svg" class="close_contact_button"/>
+            <img src="./assets/icons/close_form.svg" class="close_contact_button" alt="Icône pour fermer le formulaire"/>
           </div>
           <form
             method="get"
@@ -114,27 +114,28 @@
       <!-- Lightbox -->
       <div class="lightbox_modal">
         <div class="modal">
-          <img src="./assets/icons/close_lightbox.svg" class="close_media_button"/>
-          <img src="./assets/icons/previous.svg"/>
+          <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Icône pour fermer le media"/>
+          <img src="./assets/icons/previous.svg" alt="Aller au media précédent"/>
           <figure>
             <img src="./assets/photographers/Mimi/Animals_Rainbow.jpg" class="lightbox_media"/>
             <figcaption>
               <h3>Arc-en-ciel</h3>
             </figcaption>
           </figure>
-          <img src="./assets/icons/next.svg"/>
+          <img src="./assets/icons/next.svg" alt="Aller au media suivant"/>
 
         </div>
       </div>
       
-      <!-- Templates medium -->
+      <!-- Template medium -->
       <template id="template-medium-card-image">
         <figure>
           <img class="open_modal medium-card_img" src="">
           <figcaption>
             <h3 class="medium-card_title"></h3>
-            <div class="like_counter">
+            <div class="like_counter"> 
               <p class="medium-card_likes"></p>
+              <i class="fa-solid fa-heart" aria-hidden="true"></i>
             </div>
           </figcaption>
         </figure>
@@ -155,5 +156,12 @@
       </template>
 
     </div>
+
+    <!-- Total likes box -->
+    <div class="total-likes">
+      <p>blabla</p>
+      <p>blabla</p>
+    </div>
+  
   </body>
 </html>
