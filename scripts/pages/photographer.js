@@ -1,4 +1,5 @@
 import { photographerTemplate } from "../templates/photographer.js"
+import { launchLightboxModal } from "../utils/lightbox.js"
 
 async function getPhotographer() {
     
@@ -19,12 +20,9 @@ async function getPhotographer() {
     )
 }
 
-// Changer tout ça en bas
-async function displayData(photographer, media) {
+export async function displayData(photographer, media) {
     const photographerMedias = document.querySelector('.photographer_medias');
 
-    
-        console.log("photographerMedias", photographerMedias)
         const photographerModel = photographerTemplate(photographer);
         
         photographerModel.getUserCardProfile();
@@ -51,3 +49,5 @@ export async function initPhotographer() {
     const { photographer, media } = await getPhotographer();
     displayData(photographer, media);
 }
+
+initPhotographer()
