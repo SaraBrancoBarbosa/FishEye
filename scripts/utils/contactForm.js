@@ -24,7 +24,7 @@ function launchModal() {
     document.body.style.overflow = "hidden"; 
     modal.addEventListener("click", closeModal); 
     modal.querySelector(".modal").addEventListener("click", stopPropagation);
-
+    
     btnCloseModal.addEventListener("click", closeModal);
 
     btnSubmit.addEventListener("click", validate);
@@ -33,9 +33,17 @@ function launchModal() {
 function closeModal() {
     modal.style.display = "none";
     document.body.style.overflow = "auto";
+    
     modal.removeEventListener("click", closeModal);
     modal.querySelector(".modal").removeEventListener("click", stopPropagation);
 }
+
+// Closes modal by pressing the escape key
+window.addEventListener("keydown",(event) => {
+  if (event.key === 'Escape') {
+    closeModal()
+  }
+});
 
 // Launches modal event by clicking on the button
 btnOpenModal.addEventListener("click", launchModal);
