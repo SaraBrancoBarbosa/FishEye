@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="./css/style.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <script src="scripts/scripts.js" type="module"></script>
+    <script src="scripts/pages/photographer.js" type="module"></script>
     <script src="/scripts/utils/contactForm.js" defer></script>
     <script src="/scripts/utils/filter.js" defer></script>
     <script src="/scripts/utils/lightbox.js" type="module" defer></script>
@@ -56,9 +56,9 @@
 
       <!-- Form -->
       <div class="contact_modal">
-        <div class="modal">
+        <div class="modal" role="dialog" aria-describedby="modalTitle">
           <div class="header_form">
-            <h2>Contactez-moi</h2>
+            <h2 id="modalTitle">Contactez-moi</h2>
             <img src="./assets/icons/close_form.svg" class="close_contact_button" alt="Icône pour fermer le formulaire"/>
           </div>
           <form
@@ -116,10 +116,10 @@
       </div>
 
       <!-- Lightbox -->
-      <div class="lightbox_modal">
-        <div class="modal">
-          <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Icône pour fermer le media"/>
-          <img src="./assets/icons/previous.svg" alt="Aller au media précédent"/>
+      <div class="lightbox_modal" aria-label="Apperçu plein écran du média">
+        <div class="modal" role="dialog">
+          <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Fermer le media"/>
+          <img src="./assets/icons/previous.svg" alt="Aller au media précédent" class="btn-prev"/>
           <figure class="figure_open-modal">
             <!-- Mais là c'est juste les img, pas les vidéos -->
             <img class="open_modal medium-card_img" src=""/>
@@ -127,7 +127,7 @@
               <h3 class="medium-card_title"></h3>
             </figcaption>
           </figure>
-          <img src="./assets/icons/next.svg" alt="Aller au media suivant"/>
+          <img src="./assets/icons/next.svg" alt="Aller au media suivant" class="btn-next"/>
 
         </div>
       </div>

@@ -5,6 +5,8 @@ const modal = document.querySelector(".contact_modal");
 const btnOpenModal = document.querySelector(".contact_button");
 const btnCloseModal = document.querySelector(".close_contact_button");
 const btnSubmit = document.querySelector(".submit_button");
+const body = document.body;
+const backgroundHtml = document.querySelector(".wrapper");
 
 // Form elements
 const firstName = document.getElementById("first");
@@ -21,21 +23,34 @@ const stopPropagation = (event) => {
 
 function launchModal() {
 	modal.style.display = "flex";
-    document.body.style.overflow = "hidden"; 
-    modal.addEventListener("click", closeModal); 
-    modal.querySelector(".modal").addEventListener("click", stopPropagation);
+  body.style.overflow = "hidden"; 
 
-    btnCloseModal.addEventListener("click", closeModal);
+  backgroundHtml.setAttribute("aria-hidden", true);
+  modal.setAttribute("aria-hidden", false);
+  modal.setAttribute("aria-modal", false);
+  
+  modal.addEventListener("click", closeModal); 
+  modal.querySelector(".modal").addEventListener("click", stopPropagation);
 
-    btnSubmit.addEventListener("click", validate);
+  // Pour focuser sur le bouton de fermeture lorsque la modale s'ouvre
+  // Pour l'instant ça ne fonctionne pas D:
+  btnCloseModal.focus();
+
+  btnCloseModal.addEventListener("click", closeModal);
+
+  btnSubmit.addEventListener("click", validate);
 }
 
 function closeModal() {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-    
-    modal.removeEventListener("click", closeModal);
-    modal.querySelector(".modal").removeEventListener("click", stopPropagation);
+  modal.style.display = "none";
+  body.style.overflow = "auto";
+
+  backgroundHtml.setAttribute("aria-hidden", false);
+  modal.setAttribute("aria-hidden", true);
+  modal.setAttribute("aria-modal", true);
+
+  modal.removeEventListener("click", closeModal);
+  modal.querySelector(".modal").removeEventListener("click", stopPropagation);
 }
 
 // Closes modal by pressing the escape key
@@ -49,6 +64,11 @@ window.addEventListener("keydown",(event) => {
 btnOpenModal.addEventListener("click", launchModal);
 
 /*********** Form elements functions ***********/
+// Add photographer ID to the title
+
+
+
+/*********** Form elements functions ***********/
 
 /**
  * Validating function
@@ -58,89 +78,85 @@ btnOpenModal.addEventListener("click", launchModal);
 
 // First name and last name function
 const validateName = (element) => {
-    let result = true;
-    const nameValue = element.value;
-    element.parentNode.setAttribute("data-error-visible", false);
-    element.setAttribute("aria-invalid", false);
-  
-    if (!(/^(.{2,})$/).test(nameValue)) {
-      result = false;
-      element.parentNode.dataset.error="Veuillez entrer au moins 2 caractères."
-      element.parentNode.setAttribute("data-error-visible", true);
-      element.setAttribute("aria-invalid", true);
-    } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/).test(nameValue)) {
-      result = false;
-      element.parentNode.dataset.error="Caractères invalides.";
-      element.parentNode.setAttribute("data-error-visible", true);
-      element.setAttribute("aria-invalid", true);
-    }
-    return result;
+  let result = true;
+  const nameValue = element.value;
+  element.parentNode.setAttribute("data-error-visible", false);
+  element.setAttribute("aria-invalid", false);
+
+  if (!(/^(.{2,})$/).test(nameValue)) {
+    result = false;
+    element.parentNode.dataset.error="Veuillez entrer au moins 2 caractères."
+    element.parentNode.setAttribute("data-error-visible", true);
+    element.setAttribute("aria-invalid", true);
+  } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/).test(nameValue)) {
+    result = false;
+    element.parentNode.dataset.error="Caractères invalides.";
+    element.parentNode.setAttribute("data-error-visible", true);
+    element.setAttribute("aria-invalid", true);
   }
+  return result;
+}
 
 // Email function
 const validateEmail = (element) => {
-    let result = true;
-    const emailValue = element.value;
-    element.parentNode.setAttribute("data-error-visible", false);
-    element.setAttribute("aria-invalid", false);
-  
-    if (!(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(emailValue)) {
-      result = false;
-      element.parentNode.dataset.error="Veuillez entrer une adresse email valide.";
-      element.parentNode.setAttribute("data-error-visible", true);
-      element.setAttribute("aria-invalid", true);
-    }
-    return result;
+  let result = true;
+  const emailValue = element.value;
+  element.parentNode.setAttribute("data-error-visible", false);
+  element.setAttribute("aria-invalid", false);
+
+  if (!(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(emailValue)) {
+    result = false;
+    element.parentNode.dataset.error="Veuillez entrer une adresse email valide.";
+    element.parentNode.setAttribute("data-error-visible", true);
+    element.setAttribute("aria-invalid", true);
+  }
+  return result;
  }
 
  // User message function
  const validateUserMessage = (element) => {
-    let result = true;
-    const userMessageValue = element.value;
-    element.parentNode.setAttribute("data-error-visible", false);
-    element.setAttribute("aria-invalid", false);
-  
-    if (!(/^(.{2,})$/).test(userMessageValue)) {
-      result = false;
-      element.parentNode.dataset.error="Veuillez entrer au moins 2 caractères."
-      element.parentNode.setAttribute("data-error-visible", true);
-      element.setAttribute("aria-invalid", true);
+  let result = true;
+  const userMessageValue = element.value;
+  element.parentNode.setAttribute("data-error-visible", false);
+  element.setAttribute("aria-invalid", false);
 
-    // Interdire les chevrons  
-    } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-][^\<\>]+$/).test(userMessageValue)) {
-      result = false;
-      element.parentNode.dataset.error="Caractères invalides."
-      element.parentNode.setAttribute("data-error-visible", true);
-      element.setAttribute("aria-invalid", true);
-    }
-    return result;
+  if (!(/^(.{2,})$/).test(userMessageValue)) {
+    result = false;
+    element.parentNode.dataset.error="Veuillez entrer au moins 2 caractères."
+    element.parentNode.setAttribute("data-error-visible", true);
+    element.setAttribute("aria-invalid", true);
+
+  // Interdire les chevrons  
+  } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-][^\<\>]+$/).test(userMessageValue)) {
+    result = false;
+    element.parentNode.dataset.error="Caractères invalides."
+    element.parentNode.setAttribute("data-error-visible", true);
+    element.setAttribute("aria-invalid", true);
   }
+  return result;
+}
 
 /*********** Fields validation of the form ***********/
 
 function validateFields() {
+  let result = true;
 
-    let result = true;
-  
-    result = validateName(firstName) && result;
-    result = validateName(lastName) && result;
-    result = validateEmail(email) && result;
-    result = validateUserMessage(userMessage) && result;
+  result = validateName(firstName) && result;
+  result = validateName(lastName) && result;
+  result = validateEmail(email) && result;
+  result = validateUserMessage(userMessage) && result;
 
-    // If all the fields are correct, the result is validated
-    return result; 
-  
+  // If all the fields are correct, the result is validated
+  return result; 
 }
 
 /*********** Form submission ***********/
 const validate = (event) => {
-  
-    event.preventDefault();
-    if (!validateFields(event)) {
-    } else {
-      closeModal();
-    }
-  
+  event.preventDefault();
+  if (!validateFields(event)) {
+  } else {
+    closeModal();
+  }
 };
 
 /*

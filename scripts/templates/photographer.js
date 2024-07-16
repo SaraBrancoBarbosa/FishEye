@@ -28,6 +28,7 @@ export function photographerTemplate(photographer) {
 
         const photographerImg = document.createElement('img');
         photographerImg.setAttribute('src', profile);
+        photographerImg.alt = "";
 
         photographerHeader.appendChild(photographerProfile);
         photographerProfile.appendChild(h1);
