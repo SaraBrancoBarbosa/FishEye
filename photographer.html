@@ -10,7 +10,7 @@
     <script src="scripts/scripts.js" type="module"></script>
     <script src="/scripts/utils/contactForm.js" defer></script>
     <script src="/scripts/utils/filter.js" defer></script>
-    <script src="/scripts/utils/lightbox.js" defer></script>
+    <script src="/scripts/utils/lightbox.js" type="module" defer></script>
     <title>Fisheye - Photographes </title>
   </head>
 
@@ -74,6 +74,7 @@
                 id="first"
                 name="first"
                 value=""
+                aria-required=true
               />
             </div>
             <div class="formData">
@@ -84,6 +85,7 @@
                 id="last"
                 name="last"
                 value=""
+                aria-required=true
               />
             </div>
             <div class="formData">
@@ -93,6 +95,7 @@
                 type="email"
                 id="email"
                 name="email"
+                aria-required=true
               />
             </div>
             <div class="formData">
@@ -101,7 +104,8 @@
                 class="text-control"
                 type="email"
                 id="user-message"
-                name="user-message"></textarea
+                name="user-message"
+                aria-required=true></textarea
               >
             </div>
 
@@ -116,10 +120,11 @@
         <div class="modal">
           <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Icône pour fermer le media"/>
           <img src="./assets/icons/previous.svg" alt="Aller au media précédent"/>
-          <figure>
-            <img src="./assets/photographers/Mimi/Animals_Rainbow.jpg" class="lightbox_media"/>
+          <figure class="figure_open-modal">
+            <!-- Mais là c'est juste les img, pas les vidéos -->
+            <img class="open_modal medium-card_img" src=""/>
             <figcaption>
-              <h3>Arc-en-ciel</h3>
+              <h3 class="medium-card_title"></h3>
             </figcaption>
           </figure>
           <img src="./assets/icons/next.svg" alt="Aller au media suivant"/>

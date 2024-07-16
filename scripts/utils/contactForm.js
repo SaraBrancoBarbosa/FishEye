@@ -24,7 +24,7 @@ function launchModal() {
     document.body.style.overflow = "hidden"; 
     modal.addEventListener("click", closeModal); 
     modal.querySelector(".modal").addEventListener("click", stopPropagation);
-    
+
     btnCloseModal.addEventListener("click", closeModal);
 
     btnSubmit.addEventListener("click", validate);
@@ -61,15 +61,18 @@ const validateName = (element) => {
     let result = true;
     const nameValue = element.value;
     element.parentNode.setAttribute("data-error-visible", false);
+    element.setAttribute("aria-invalid", false);
   
     if (!(/^(.{2,})$/).test(nameValue)) {
       result = false;
       element.parentNode.dataset.error="Veuillez entrer au moins 2 caractères."
       element.parentNode.setAttribute("data-error-visible", true);
+      element.setAttribute("aria-invalid", true);
     } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/).test(nameValue)) {
       result = false;
       element.parentNode.dataset.error="Caractères invalides.";
       element.parentNode.setAttribute("data-error-visible", true);
+      element.setAttribute("aria-invalid", true);
     }
     return result;
   }
@@ -79,11 +82,13 @@ const validateEmail = (element) => {
     let result = true;
     const emailValue = element.value;
     element.parentNode.setAttribute("data-error-visible", false);
+    element.setAttribute("aria-invalid", false);
   
     if (!(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(emailValue)) {
       result = false;
       element.parentNode.dataset.error="Veuillez entrer une adresse email valide.";
       element.parentNode.setAttribute("data-error-visible", true);
+      element.setAttribute("aria-invalid", true);
     }
     return result;
  }
@@ -93,17 +98,20 @@ const validateEmail = (element) => {
     let result = true;
     const userMessageValue = element.value;
     element.parentNode.setAttribute("data-error-visible", false);
+    element.setAttribute("aria-invalid", false);
   
     if (!(/^(.{2,})$/).test(userMessageValue)) {
       result = false;
       element.parentNode.dataset.error="Veuillez entrer au moins 2 caractères."
       element.parentNode.setAttribute("data-error-visible", true);
+      element.setAttribute("aria-invalid", true);
 
     // Interdire les chevrons  
     } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-][^\<\>]+$/).test(userMessageValue)) {
       result = false;
       element.parentNode.dataset.error="Caractères invalides."
       element.parentNode.setAttribute("data-error-visible", true);
+      element.setAttribute("aria-invalid", true);
     }
     return result;
   }
