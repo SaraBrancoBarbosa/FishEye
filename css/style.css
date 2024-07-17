@@ -97,6 +97,12 @@ header h1 {
   transition: 400ms ease;
 }
 
+.close_button {
+  background-color: transparent;
+  border-color: transparent;
+  align-self: start;
+}
+
 /*********** Modal for contact form ***********/
 .contact_modal {
   display: none;
@@ -153,7 +159,7 @@ header h1 {
 .contact_modal .modal .header_form h2 {
   font-size: 4rem;
   font-weight: normal;
-  text-align: center;
+  text-align: left;
 }
 @media screen and (max-width: 768px) {
   .contact_modal .modal .header_form h2 {
