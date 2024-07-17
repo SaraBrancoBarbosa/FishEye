@@ -18,6 +18,7 @@ function launchBoxFilter() {
     dropdownFilter.querySelector(".filter_box").addEventListener("click", stopFilterPropagation);
     
     btnCloseFilter.addEventListener("click", closeBoxFilter);
+    btnFilter.setAttribute("aria-expanded", true);
 }
 
 function closeBoxFilter() {
@@ -27,7 +28,9 @@ function closeBoxFilter() {
 }
 
 // Launches modal event by clicking on the button
-btnFilter.addEventListener("click", launchBoxFilter);
+btnFilter.onclick = () => {
+    launchBoxFilter()
+}
 
 // Pour l'instant la fermeture ne se fait qu'en cliquant sur le dropdown è_é 
 //C'est l'inverse qu'on veut

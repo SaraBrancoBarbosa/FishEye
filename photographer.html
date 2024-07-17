@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="./css/style.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <script src="scripts/pages/photographer.js" type="module"></script>
-    <script src="/scripts/utils/contactForm.js" defer></script>
-    <script src="/scripts/utils/filter.js" defer></script>
+    <script src="/scripts/utils/contactForm.js" type="module" defer></script>
+    <script src="/scripts/utils/filter.js" type="module" defer></script>
     <script src="/scripts/utils/lightbox.js" type="module" defer></script>
     <title>Fisheye - Photographes </title>
   </head>
@@ -34,11 +34,11 @@
         <div class="filter">
           <p>Trier par</p>
           <div class="filter_box">
-            <button class="filter_button">
+            <button class="filter_button" aria-label="Ouvrir le filtre" role="button" aria-haspopup="listbox" aria-expanded="false">
               Popularité
               <i class="fa-solid fa-chevron-up filter-icon" aria-hidden="true"></i>
             </button>
-            <ul class="filter_dropdown">
+            <ul class="filter_dropdown" role="listbox" aria-activedescendant="" aria-selected="true">
               <li class="filter_button first_filter">
                 Date
               </li>
@@ -59,7 +59,9 @@
         <div class="modal" role="dialog" aria-describedby="modalTitle">
           <div class="header_form">
             <h2 id="modalTitle">Contactez-moi</h2>
-            <img src="./assets/icons/close_form.svg" class="close_contact_button" alt="Icône pour fermer le formulaire"/>
+            <button class="close_button" aria-label="Fermer le formulaire">
+              <img src="./assets/icons/close_form.svg" class="close_contact_button" alt="Fermer le formulaire"/>
+            </button>
           </div>
           <form
             method="get"
@@ -67,7 +69,7 @@
           >
 
             <div class="formData">
-              <label for="first" required>Prénom</label>
+              <label for="first">Prénom</label>
               <input
                 class="text-control"
                 type="text"
@@ -118,11 +120,13 @@
       <!-- Lightbox -->
       <div class="lightbox_modal" aria-label="Apperçu plein écran du média">
         <div class="modal" role="dialog">
-          <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Fermer le media"/>
+          <button class="close_button" aria-label="Fermer l'apperçu du média">
+            <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Fermer l'apperçu du média'"/>
+          </button>
           <img src="./assets/icons/previous.svg" alt="Aller au media précédent" class="btn-prev"/>
           <figure class="figure_open-modal">
-            <!-- Mais là c'est juste les img, pas les vidéos -->
-            <img class="open_modal medium-card_img" src=""/>
+            <!-- Mais là c'est juste les img, pas les vidéos. Aussi, le alt doit inclure le titre correspondant des medium -->
+            <img class="open_modal medium-card_img" src="" alt=""/>
             <figcaption>
               <h3 class="medium-card_title"></h3>
             </figcaption>
@@ -135,12 +139,12 @@
       <!-- Template medium -->
       <template id="template-medium-card-image">
         <figure>
-          <img class="open_modal medium-card_img" src="">
+          <img class="open_modal medium-card_img" src="" alt="">
           <figcaption>
             <h3 class="medium-card_title"></h3>
             <div class="like_counter"> 
               <p class="medium-card_likes"></p>
-              <i class="fa-solid fa-heart" aria-hidden="true"></i>
+              <i class="fa-solid fa-heart" aria-label="likes"></i>
             </div>
           </figcaption>
         </figure>

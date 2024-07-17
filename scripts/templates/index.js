@@ -9,6 +9,7 @@ export function indexTemplate(photographer) {
 
         const link = document.createElement('a');
         link.href = `/photographer.html?id=${id}`;
+        link.setAttribute('aria-label', "Découvrir son travail")
         
         const figure = document.createElement('figure');
 
