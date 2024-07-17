@@ -13,6 +13,7 @@ const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
 const userMessage = document.getElementById("user-message");
+const contactMe = document.getElementById("modalTitle");
 
 /*********** Launching and closing modal form ***********/
 
@@ -63,10 +64,26 @@ window.addEventListener("keydown",(event) => {
 // Launches modal event by clicking on the button
 btnOpenModal.addEventListener("click", launchModal);
 
-/*********** Form elements functions ***********/
-// Add photographer ID to the title
+/*********** Add photographer ID to the title ***********/
 
+async function getPhotographerIdForm() {
+    
+  const id = new URLSearchParams(window.location.search).get('id')
 
+  const database = await fetch('data/database.json')
+  .then(response => response.json());    
+  
+  return (
+      {
+        photographer: database.photographers.find(p => ''+p.id === ''+id),
+      }
+  )
+}
+
+const id = await getPhotographerIdForm();
+
+contactMe.textContent = "Contactez-moi " + id;
+console.log(id)
 
 /*********** Form elements functions ***********/
 
