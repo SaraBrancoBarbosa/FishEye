@@ -45,7 +45,7 @@ export function photographerTemplate(photographer) {
     function getUserMedium(photographer, medium) {
         
         // Cut the names to go to the right folders
-        const path = '/assets/photographers/'+(photographer.name.split(' ')[0].replaceAll('-', ' '));
+        const path = '/assets/photographers/'+(photographer.name.split(' ')[0].replaceAll('-', ' ')+'/small');
 
         if (medium.video) {
             return getUserVideo(path,medium)
