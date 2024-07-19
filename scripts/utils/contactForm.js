@@ -3,10 +3,9 @@
 // DOM elements
 const modal = document.querySelector(".contact_modal");
 const btnOpenModal = document.querySelector(".contact_button");
-const btnCloseModal = document.querySelector(".close_contact_button");
+const btnCloseModal = document.querySelector(".close_button");
 const btnSubmit = document.querySelector(".submit_button");
 const body = document.body;
-const backgroundHtml = document.querySelector(".wrapper");
 
 // Form elements
 const firstName = document.getElementById("first");
@@ -26,7 +25,6 @@ function launchModal() {
 	modal.style.display = "flex";
   body.style.overflow = "hidden"; 
 
-  backgroundHtml.setAttribute("aria-hidden", true);
   modal.setAttribute("aria-hidden", false);
   modal.setAttribute("aria-modal", false);
   
@@ -34,7 +32,6 @@ function launchModal() {
   modal.querySelector(".modal").addEventListener("click", stopPropagation);
 
   // Pour focuser sur le bouton de fermeture lorsque la modale s'ouvre
-  // Pour l'instant ça ne fonctionne pas D:
   btnCloseModal.focus();
 
   btnCloseModal.addEventListener("click", closeModal);
@@ -46,7 +43,6 @@ function closeModal() {
   modal.style.display = "none";
   body.style.overflow = "auto";
 
-  backgroundHtml.setAttribute("aria-hidden", false);
   modal.setAttribute("aria-hidden", true);
   modal.setAttribute("aria-modal", true);
 
@@ -69,21 +65,37 @@ btnOpenModal.addEventListener("click", launchModal);
 async function getPhotographerIdForm() {
     
   const id = new URLSearchParams(window.location.search).get('id')
-
   const database = await fetch('data/database.json')
   .then(response => response.json());    
   
-  return (
-      {
-        photographer: database.photographers.find(p => ''+p.id === ''+id),
-      }
-  )
+  return database.photographers.find(p => ''+p.id === ''+id) 
+  
 }
 
-const id = await getPhotographerIdForm();
+const photographer = await getPhotographerIdForm();
 
-contactMe.textContent = "Contactez-moi " + id;
-console.log(id)
+contactMe.textContent = "Contactez-moi " + photographer.name;
+console.log(photographer)
+
+/*********** Setting and removing the error messages ***********/
+
+const errorElement = (element) => {
+  element.parentNode.setAttribute("data-error-visible", true);
+  element.setAttribute("aria-invalid", true);
+}
+
+const errorMessage = {
+  nameValueMinimum: "Veuillez entrer au moins 2 caractères.",
+  nameValueInvalid: "Caractères invalides.",
+  emailValue: "Veuillez entrer une adresse email valide.",
+  userMessageValueMinimum: "Veuillez entrer au moins 2 caractères.",
+  userMessageValueInvalid: "Caractères invalides.",
+};
+
+const removeErrorElement = (element) => {
+  element.parentNode.setAttribute("data-error-visible", false);
+  element.setAttribute("aria-invalid", false);
+}
 
 /*********** Form elements functions ***********/
 
@@ -97,19 +109,17 @@ console.log(id)
 const validateName = (element) => {
   let result = true;
   const nameValue = element.value;
-  element.parentNode.setAttribute("data-error-visible", false);
-  element.setAttribute("aria-invalid", false);
+  removeErrorElement(element);
 
   if (!(/^(.{2,})$/).test(nameValue)) {
     result = false;
-    element.parentNode.dataset.error="Veuillez entrer au moins 2 caractères."
-    element.parentNode.setAttribute("data-error-visible", true);
-    element.setAttribute("aria-invalid", true);
+    element.parentNode.dataset.error=errorMessage.nameValueMinimum;
+    errorElement(element);
+    
   } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/).test(nameValue)) {
     result = false;
-    element.parentNode.dataset.error="Caractères invalides.";
-    element.parentNode.setAttribute("data-error-visible", true);
-    element.setAttribute("aria-invalid", true);
+    element.parentNode.dataset.error=errorMessage.nameValueInvalid;
+    errorElement(element);
   }
   return result;
 }
@@ -118,14 +128,12 @@ const validateName = (element) => {
 const validateEmail = (element) => {
   let result = true;
   const emailValue = element.value;
-  element.parentNode.setAttribute("data-error-visible", false);
-  element.setAttribute("aria-invalid", false);
+  removeErrorElement(element);
 
   if (!(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(emailValue)) {
     result = false;
-    element.parentNode.dataset.error="Veuillez entrer une adresse email valide.";
-    element.parentNode.setAttribute("data-error-visible", true);
-    element.setAttribute("aria-invalid", true);
+    element.parentNode.dataset.error=errorMessage.emailValue;
+    errorElement(element);
   }
   return result;
  }
@@ -134,21 +142,18 @@ const validateEmail = (element) => {
  const validateUserMessage = (element) => {
   let result = true;
   const userMessageValue = element.value;
-  element.parentNode.setAttribute("data-error-visible", false);
-  element.setAttribute("aria-invalid", false);
+  removeErrorElement(element);
 
   if (!(/^(.{2,})$/).test(userMessageValue)) {
     result = false;
-    element.parentNode.dataset.error="Veuillez entrer au moins 2 caractères."
-    element.parentNode.setAttribute("data-error-visible", true);
-    element.setAttribute("aria-invalid", true);
+    element.parentNode.dataset.error=errorMessage.userMessageValueMinimum;
+    errorElement(element);
 
-  // Interdire les chevrons  
+  // Ban chevrons 
   } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-][^\<\>]+$/).test(userMessageValue)) {
     result = false;
-    element.parentNode.dataset.error="Caractères invalides."
-    element.parentNode.setAttribute("data-error-visible", true);
-    element.setAttribute("aria-invalid", true);
+    element.parentNode.dataset.error=errorMessage.userMessageValueInvalid;
+    errorElement(element);
   }
   return result;
 }
