@@ -74,7 +74,7 @@ async function getPhotographerIdForm() {
 
 const photographer = await getPhotographerIdForm();
 
-contactMe.textContent = "Contactez-moi " + photographer.name;
+contactMe.innerHTML = "Contactez-moi<br>" + photographer.name;
 console.log(photographer)
 
 /*********** Setting and removing the error messages ***********/
