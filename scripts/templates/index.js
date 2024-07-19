@@ -9,18 +9,20 @@ export function indexTemplate(photographer) {
 
         const link = document.createElement('a');
         link.href = `/photographer.html?id=${id}`;
-        link.setAttribute('aria-label', "Découvrir son travail")
+        link.setAttribute('aria-label', name)
         
         const figure = document.createElement('figure');
 
         const img = document.createElement('img');
         img.setAttribute('src', profile);
         img.alt = "";
+        img.setAttribute('aria-hidden', true)
 
         const figCaption = document.createElement('figcaption');
      
         const h2 = document.createElement('h2');
         h2.textContent = name;
+        h2.setAttribute('aria-hidden', true)
 
         const divContent = document.createElement('div');
         divContent.classList.add('div_content');
