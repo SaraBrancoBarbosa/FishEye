@@ -37,6 +37,7 @@
             <button class="filter_button" aria-label="Ouvrir le filtre" role="button" aria-haspopup="listbox" aria-expanded="false">
               Popularité
               <i class="fa-solid fa-chevron-up filter-icon" aria-hidden="true"></i>
+              <span class="sr-only">Options du filtre</span> 
             </button>
             <ul class="filter_dropdown" role="listbox" aria-activedescendant="" aria-selected="true">
               <li class="filter_button first_filter">
@@ -56,10 +57,10 @@
 
       <!-- Form -->
       <div class="contact_modal">
-        <div class="modal" role="dialog" aria-describedby="modalTitle">
+        <div class="modal" role="dialog" aria-labelledby="modalTitle">
           <div class="header_form">
-            <h2 id="modalTitle">Contactez-moi</h2>
-            <button class="close_button" aria-label="Fermer le formulaire">
+            <h1 id="modalTitle">Contactez-moi</h1>
+            <button type="button" class="close_button" aria-label="Fermer le formulaire">
               <img src="./assets/icons/close_form.svg" class="close_contact_button" alt="Fermer le formulaire"/>
             </button>
           </div>
@@ -120,8 +121,8 @@
       <!-- Lightbox -->
       <div class="lightbox_modal" aria-label="Apperçu plein écran du média">
         <div class="modal" role="dialog">
-          <button class="close_button" aria-label="Fermer l'apperçu du média">
-            <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Fermer l'apperçu du média'"/>
+          <button type="button" class="close_button" aria-label="Fermer l'apperçu du média">
+            <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Fermer l'apperçu du média"/>
           </button>
           <img src="./assets/icons/previous.svg" alt="Aller au media précédent" class="btn-prev"/>
           <figure class="figure_open-modal">
@@ -153,7 +154,6 @@
       <template id="template-medium-card-video">
         <figure>
           <video class="open_modal medium-card_video" controls>
-            <source src="">
           </video>
           <figcaption>
             <h3 class="medium-card_title"></h3>

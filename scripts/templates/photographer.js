@@ -56,13 +56,14 @@ export function photographerTemplate(photographer) {
     // To get the images
     function getUserImage(path,medium) {
 
-        const {image, title, likes} = medium;
+        const {image, title, likes, alt} = medium;
         const template = document.getElementById('template-medium-card-image');
 
         // On appelle le template du HTML. cloneNode crée un fragment, une balise vide sans nom
         const card = template.content.cloneNode(true);
         const img = card.querySelector('.medium-card_img');
         img.src = `${path}/${image}`;
+        img.alt = `${alt}`;
         
         card.querySelector('.medium-card_title').textContent = `${title}`;
         card.querySelector('.medium-card_likes').textContent = `${likes}`;
@@ -73,13 +74,14 @@ export function photographerTemplate(photographer) {
     // To get the videos
     function getUserVideo(path,medium) {
 
-        const {videos, title, likes} = medium;
+        const {title, likes, alt} = medium;
         const template = document.getElementById('template-medium-card-video');
         
         const card = template.content.cloneNode(true);
         const video = card.querySelector('.medium-card_video');
         video.src = `${path}/${medium.video}`;
-
+        video.setAttribute('aria-label', `${alt}`);
+        
         card.querySelector('.medium-card_title').textContent = `${title}`;
         card.querySelector('.medium-card_likes').textContent = `${likes}`;
 
