@@ -74,15 +74,18 @@
     font-size: 1.125rem;
     font-weight: bold;
     width: 100%;
-    position: relative;
 
-    .filter-icon {
+    &_box {
+        position: relative;
+    }
+
+    &-icon {
         font-size: 1rem;
         transition: 400ms ease;
         transform: scaleY(-1);
     }
 
-    .filter_button {
+    &_button {
         &:focus {
             border-radius: 5px 5px 0px 0px;
             transition: 400ms ease;
@@ -95,12 +98,12 @@
         }
     }
 
-    .filter_dropdown {
+    &_dropdown {
         display: none;
         flex-direction: column;
         position: absolute;
         top: 70px;
-        left: 41px;
+        left: 0px;
         animation-name: modalopen;
         animation-duration: 0.8s;
 
@@ -126,7 +129,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
     justify-items: center;
-    row-gap: 30px;
+    row-gap: 40px;
     column-gap: 90px;
     padding-top: 40px;
     padding-bottom: 40px;
@@ -138,17 +141,17 @@
         justify-content: center;
         align-items: center;
         width: 350px;
-        transition: 200ms;
-
-            &:hover {
-                transform: scale(1.05);
-            }
 
         img, video {
         height: 300px;
         width: 350px;
         object-fit: cover;
         border-radius: 5px;
+        transition: 200ms;
+
+            &:hover {
+                transform: scale(1.05);
+            }
         }
 
         figcaption {
@@ -157,10 +160,10 @@
             align-items: center;
             height: 35px;
             width: 100%;
-            font-size: 1.5rem;
             color: $primary-color;
             font-weight: bold;
-            padding-top: 15px;
+            padding-top: 25px;
+            font-size: 1.4rem;
 
             h3 {
                 font-weight: lighter;
@@ -176,7 +179,7 @@
 
     @include media-phone {
         grid-template-columns: 1fr;
-        padding: auto;
+        padding: 0px;
         width: auto;
 
         figure {

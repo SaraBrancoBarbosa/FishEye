@@ -31,7 +31,6 @@
         padding: 35px;
         @include contact-shadow;
         overflow: hidden;
-        overflow-y: auto;
         position: relative;
         animation-name: modalopen;
         animation-duration: 0.8s;
@@ -51,7 +50,7 @@
                 fill: white;
             }
 
-            h2 {
+            h1 {
                 font-size: 4rem;
                 font-weight: normal;
                 text-align: left;
@@ -67,6 +66,8 @@
             width: 100%;
             flex-direction: column;
             align-items: flex-start;
+            overflow-y: auto;
+            padding: 2px;
 
             label {
                 color: #312E2E;

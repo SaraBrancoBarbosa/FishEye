@@ -1,9 +1,20 @@
 /*********** Colors ***********/
 /*********** Modal animation ***********/
+@-webkit-keyframes modalopen {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-150px);
+            transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes modalopen {
   from {
     opacity: 0;
-    transform: translateY(-150px);
+    -webkit-transform: translateY(-150px);
+            transform: translateY(-150px);
   }
   to {
     opacity: 1;
@@ -12,7 +23,9 @@
 * {
   font-family: "DM Sans", sans-serif;
   margin: 0;
-  box-sizing: border-box;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
@@ -32,10 +45,19 @@ a {
 }
 
 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 20px;
   height: 90px;
 }
@@ -67,12 +89,14 @@ header h1 {
   border: 2px solid #901C1C;
   border-radius: 5px;
   cursor: pointer;
+  -webkit-transition: 400ms ease;
   transition: 400ms ease;
 }
 .contact_button:hover, .contact_button:focus {
   font-weight: bold;
   color: black;
   background-color: #DB8876;
+  -webkit-transition: 400ms ease;
   transition: 400ms ease;
 }
 
@@ -81,9 +105,15 @@ header h1 {
 }
 
 .filter_button {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-size: 1.125rem;
   font-weight: bold;
   color: white;
@@ -94,20 +124,26 @@ header h1 {
   border: 2px solid #901C1C;
   border-radius: 5px;
   cursor: pointer;
+  -webkit-transition: 400ms ease;
   transition: 400ms ease;
 }
 
 .close_button {
   background-color: transparent;
   border-color: transparent;
-  align-self: start;
+  -ms-flex-item-align: start;
+      align-self: start;
 }
 
 /*********** Modal for contact form ***********/
 .contact_modal {
   display: none;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -119,14 +155,25 @@ header h1 {
 }
 @media screen and (max-width: 768px) {
   .contact_modal {
-    align-items: inherit;
+    -webkit-box-align: inherit;
+        -ms-flex-align: inherit;
+            align-items: inherit;
   }
 }
 .contact_modal .modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   gap: 20px;
   border-radius: 5px;
   background-color: #DB8876;
@@ -134,12 +181,14 @@ header h1 {
   max-width: 660px;
   max-height: calc(100dvh - 70px);
   padding: 35px;
-  box-shadow: -5px 10px 30px 0 rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: -5px 10px 30px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: -5px 10px 30px 0 rgba(0, 0, 0, 0.25);
   overflow: hidden;
-  overflow-y: auto;
   position: relative;
-  animation-name: modalopen;
-  animation-duration: 0.8s;
+  -webkit-animation-name: modalopen;
+          animation-name: modalopen;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
 }
 @media screen and (max-width: 768px) {
   .contact_modal .modal {
@@ -147,8 +196,12 @@ header h1 {
   }
 }
 .contact_modal .modal .header_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
 }
 .contact_modal .modal .header_form img {
@@ -156,31 +209,47 @@ header h1 {
   height: 42px;
   fill: white;
 }
-.contact_modal .modal .header_form h2 {
+.contact_modal .modal .header_form h1 {
   font-size: 4rem;
   font-weight: normal;
   text-align: left;
 }
 @media screen and (max-width: 768px) {
-  .contact_modal .modal .header_form h2 {
+  .contact_modal .modal .header_form h1 {
     font-size: 3rem;
   }
 }
 .contact_modal .modal form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  overflow-y: auto;
+  padding: 2px;
 }
 .contact_modal .modal form label {
   color: #312E2E;
   font-size: 2.25rem;
 }
 .contact_modal .modal form div {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
-  align-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   padding-bottom: 5px;
 }
 .contact_modal .modal form input {
@@ -190,6 +259,7 @@ header h1 {
   border-radius: 5px;
   padding: 0 8px;
   font-size: 1.25rem;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 .contact_modal .modal form input:focus-visible {
@@ -203,6 +273,7 @@ header h1 {
   resize: none;
   padding: 8px;
   font-size: 1.25rem;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 .contact_modal .modal form textarea:focus-visible {
@@ -218,6 +289,7 @@ header h1 {
   text-align: left;
   line-height: 0.3;
   opacity: 0;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 .contact_modal .modal form .formData[data-error-visible=true]::after {
@@ -225,13 +297,18 @@ header h1 {
 }
 .contact_modal .modal form .formData[data-error-visible=true] .text-control {
   background-color: #FFD7D7;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
 .lightbox_modal {
   display: none;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -242,13 +319,20 @@ header h1 {
   background-color: rgba(196, 196, 196, 0.4);
 }
 .lightbox_modal .modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   gap: 20px;
   border-radius: 5px;
   background-color: white;
   width: 100%;
+  max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
   max-width: fit-content;
   max-height: calc(100dvh - 70px);
@@ -256,8 +340,10 @@ header h1 {
   overflow: hidden;
   overflow-y: auto;
   position: relative;
-  animation-name: modalopen;
-  animation-duration: 0.8s;
+  -webkit-animation-name: modalopen;
+          animation-name: modalopen;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
 }
 .lightbox_modal .modal .close_media_button {
   cursor: pointer;
@@ -290,16 +376,34 @@ header h1 {
   padding: 50px 0px;
 }
 .photographer_section .div_main {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .photographer_section figure {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .photographer_section figure img {
   height: 200px;
@@ -307,21 +411,33 @@ header h1 {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  -webkit-transition: 200ms;
   transition: 200ms;
 }
 .photographer_section figure img:hover {
-  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 .photographer_section figcaption h2 {
   color: #D3573C;
   font-size: 2.25rem;
 }
 .photographer_section .div_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 5px;
   width: 100%;
 }
@@ -348,10 +464,19 @@ header h1 {
 }
 
 .main_photographer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   gap: 20px;
   width: 100%;
 }
@@ -364,15 +489,22 @@ header h1 {
 .photographer_header {
   display: grid;
   justify-items: center;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   background-color: #FAFAFA;
   height: 300px;
   width: 100%;
 }
 .photographer_header .profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 .photographer_header .profile h1 {
   font-size: 4rem;
@@ -384,8 +516,13 @@ header h1 {
   }
 }
 .photographer_header .profile .text {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 15px;
 }
 .photographer_header .profile .text h2 {
@@ -402,12 +539,18 @@ header h1 {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
 }
 @media screen and (max-width: 1024px) {
   .photographer_header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     gap: 30px;
     padding: 20px 20px;
     height: auto;
@@ -415,47 +558,63 @@ header h1 {
 }
 
 .filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 20px;
   font-size: 1.125rem;
   font-weight: bold;
   width: 100%;
+}
+.filter_box {
   position: relative;
 }
-.filter .filter-icon {
+.filter-icon {
   font-size: 1rem;
+  -webkit-transition: 400ms ease;
   transition: 400ms ease;
-  transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+          transform: scaleY(-1);
 }
-.filter .filter_button:focus {
+.filter_button:focus {
   border-radius: 5px 5px 0px 0px;
+  -webkit-transition: 400ms ease;
   transition: 400ms ease;
 }
-.filter .filter_button:focus .filter-icon {
-  transform: scaleY(1);
+.filter_button:focus .filter-icon {
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+  -webkit-transition: 400ms ease;
   transition: 400ms ease;
 }
-.filter .filter_dropdown {
+.filter_dropdown {
   display: none;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: absolute;
   top: 70px;
-  left: 41px;
-  animation-name: modalopen;
-  animation-duration: 0.8s;
+  left: 0px;
+  -webkit-animation-name: modalopen;
+          animation-name: modalopen;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
 }
-.filter .filter_dropdown li::after {
+.filter_dropdown li::after {
   content: "";
   border-top: 1px solid white;
   width: 126px;
   height: 70px;
   position: absolute;
 }
-.filter .filter_dropdown .first_filter {
+.filter_dropdown .first_filter {
   border-radius: 0px;
 }
-.filter .filter_dropdown .last_filter {
+.filter_dropdown .last_filter {
   border-radius: 0px 0px 5px 5px;
 }
 
@@ -463,23 +622,29 @@ header h1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   justify-items: center;
-  row-gap: 30px;
-  -moz-column-gap: 90px;
-       column-gap: 90px;
+  row-gap: 40px;
+  -webkit-column-gap: 90px;
+     -moz-column-gap: 90px;
+          column-gap: 90px;
   padding-top: 40px;
   padding-bottom: 40px;
   width: 100%;
 }
 .photographer_medias figure {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 350px;
-  transition: 200ms;
-}
-.photographer_medias figure:hover {
-  transform: scale(1.05);
 }
 .photographer_medias figure img, .photographer_medias figure video {
   height: 300px;
@@ -487,30 +652,46 @@ header h1 {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+.photographer_medias figure img:hover, .photographer_medias figure video:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 .photographer_medias figure figcaption {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 35px;
   width: 100%;
-  font-size: 1.5rem;
   color: #901C1C;
   font-weight: bold;
-  padding-top: 15px;
+  padding-top: 25px;
+  font-size: 1.4rem;
 }
 .photographer_medias figure figcaption h3 {
   font-weight: lighter;
 }
 .photographer_medias figure figcaption .like_counter {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 5px;
 }
 @media screen and (max-width: 768px) {
   .photographer_medias {
     grid-template-columns: 1fr;
-    padding: auto;
+    padding: 0px;
     width: auto;
   }
   .photographer_medias figure {
@@ -526,9 +707,15 @@ header h1 {
 }
 
 .total-likes {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: fixed;
   background-color: #DB8876;
   border-radius: 5px 5px 0px 0px;
