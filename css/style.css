@@ -183,7 +183,7 @@ header h1 {
   padding: 35px;
   -webkit-box-shadow: -5px 10px 30px 0 rgba(0, 0, 0, 0.25);
           box-shadow: -5px 10px 30px 0 rgba(0, 0, 0, 0.25);
-  overflow: hidden;
+  overflow: auto;
   position: relative;
   -webkit-animation-name: modalopen;
           animation-name: modalopen;
@@ -231,8 +231,6 @@ header h1 {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  overflow-y: auto;
-  padding: 2px;
 }
 .contact_modal .modal form label {
   color: #312E2E;
