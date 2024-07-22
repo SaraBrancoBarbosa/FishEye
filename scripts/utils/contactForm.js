@@ -75,7 +75,6 @@ async function getPhotographerIdForm() {
 const photographer = await getPhotographerIdForm();
 
 contactMe.innerHTML = "Contactez-moi<br>" + photographer.name;
-console.log(photographer)
 
 /*********** Setting and removing the error messages ***********/
 
@@ -179,10 +178,6 @@ const validate = (event) => {
   } else {
     closeModal();
   }
-};
 
-/*
-Plus tard, le bouton de contact enverra un message au
-photographe. Pour l'instant, seulement afficher le contenu des
-trois champs dans les logs de la console.
-*/
+  console.log(firstName.value, lastName.value, email.value, userMessage.value);
+};
