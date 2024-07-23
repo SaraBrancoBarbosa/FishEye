@@ -25,6 +25,7 @@ function launchModal() {
 	modal.style.display = "flex";
   body.style.overflow = "hidden"; 
 
+  wrapper.setAttribute("aria-hidden", true);
   modal.setAttribute("aria-hidden", false);
   modal.setAttribute("aria-modal", false);
   
