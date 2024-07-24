@@ -10,7 +10,8 @@
     <script src="scripts/pages/photographer.js" type="module"></script>
     <script src="/scripts/utils/contactForm.js" type="module" defer></script>
     <script src="/scripts/utils/filter.js" type="module" defer></script>
-    <script src="/scripts/utils/lightbox.js" type="module" defer></script>
+    <script src="/scripts/totalLikes/counter.js" type="module" defer></script>
+    <script src="/scripts/totalLikes/subject.js" type="module" defer></script>
     <title>Fisheye - Photographes </title>
   </head>
 
@@ -19,7 +20,7 @@
 
       <!-- Header -->
       <header>
-        <a href="index.html" tabindex="1">
+        <a href="index.html">
           <img src="assets/images/logo.png" class="logo" alt="Logo de Fisheye, lien vers la page d'accueil"/>
         </a>
       </header>
@@ -27,14 +28,14 @@
       <!-- Main -->
       <main id="main" class="main_photographer">
 
-        <div tabindex="2" class="photographer_header">
-          <button tabindex="2" class="contact_button">Contactez-moi</button>
+        <div class="photographer_header">
+          <button  class="contact_button">Contactez-moi</button>
         </div>
 
-        <div tabindex="3" class="filter">
-          <p>Trier par</p>
+        <div tabindex="" class="filter">
+          <p tabindex="0">Trier par</p>
           <div class="filter_box">
-            <button tabindex="3" class="filter_button" aria-label="Ouvrir le filtre" role="button" aria-haspopup="listbox" aria-expanded="false">
+            <button tabindex="" class="filter_button" aria-label="Ouvrir le filtre" role="button" aria-haspopup="listbox" aria-expanded="false">
               Popularité
               <i class="fa-solid fa-chevron-up filter-icon" aria-hidden="true"></i>
               <span class="sr-only">Options du filtre</span> 
@@ -140,12 +141,12 @@
       <!-- Template medium -->
       <template id="template-medium-card-image">
         <figure>
-          <img tabindex="4" class="open_modal medium-card_img" src="" alt="">
+          <img tabindex="0" class="open_modal medium-card_img" src="" alt="">
           <figcaption>
-            <h3 class="medium-card_title"></h3>
+            <h3 tabindex="0" class="medium-card_title"></h3>
             <div class="like_counter"> 
               <p class="medium-card_likes"></p>
-              <i class="fa-solid fa-heart" aria-label="likes"></i>
+              <i tabindex="0" class="fa-solid fa-heart" aria-label="likes"></i>
             </div>
           </figcaption>
         </figure>
@@ -153,13 +154,13 @@
 
       <template id="template-medium-card-video">
         <figure>
-          <video tabindex="4" class="open_modal medium-card_video" controls>
+          <video tabindex="0" class="open_modal medium-card_video" controls>
           </video>
           <figcaption>
-            <h3 class="medium-card_title"></h3>
+            <h3 tabindex="0" class="medium-card_title"></h3>
             <div class="like_counter">
               <p class="medium-card_likes"></p>
-              <i class="fa-solid fa-heart" aria-label="likes"></i>
+              <i tabindex="0" class="fa-solid fa-heart" aria-label="likes"></i>
             </div>
           </figcaption>
         </figure>
@@ -169,8 +170,8 @@
 
     <!-- Total likes box -->
     <div class="total-likes">
-      <p>blabla</p>
-      <p>blabla</p>
+      <span class="like-count">0</span>
+      <p class="price-box"></p>
     </div>
   
   </body>

@@ -9,13 +9,14 @@ export function indexTemplate(photographer) {
 
         const link = document.createElement('a');
         link.href = `/photographer.html?id=${id}`;
-        link.setAttribute('aria-label', name)
+        link.setAttribute('aria-label', name);
+        link.tabIndex = "0";
         
         const figure = document.createElement('figure');
 
         const img = document.createElement('img');
         img.setAttribute('src', profile);
-        img.alt = "";
+        img.alt = "0";
         img.setAttribute('aria-hidden', true)
 
         const figCaption = document.createElement('figcaption');
@@ -26,6 +27,7 @@ export function indexTemplate(photographer) {
 
         const divContent = document.createElement('div');
         divContent.classList.add('div_content');
+        divContent.tabIndex = "0";
 
         const h3 = document.createElement('h3');
         h3.textContent = city + ', ' + country;

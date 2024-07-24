@@ -2,7 +2,6 @@ export function photographerTemplate(photographer) {
     const { name, portrait, city, country, tagline } = photographer;
 
     const profile = `assets/photographers/${portrait}`;
-    //const medias = `assets/photographers/${media}`;
 
     // Header informations about the photographer
     function getUserCardProfile() {
@@ -10,6 +9,7 @@ export function photographerTemplate(photographer) {
 
         const photographerProfile = document.createElement('div');
         photographerProfile.classList.add('profile');
+        photographerProfile.tabIndex = "0";
 
         const h1 = document.createElement('h1');
         h1.textContent = name;
@@ -29,6 +29,7 @@ export function photographerTemplate(photographer) {
         const photographerImg = document.createElement('img');
         photographerImg.setAttribute('src', profile);
         photographerImg.alt = `${name}`;
+        photographerImg.tabIndex = "0";
 
         photographerHeader.appendChild(photographerProfile);
         photographerProfile.appendChild(h1);
@@ -87,6 +88,15 @@ export function photographerTemplate(photographer) {
 
         return card;
     }
+
+    function getPriceTotalLikesBox() {
+        const { price } = price;
+        const priceBox = document.querySelector('.price-box');
+        
+        priceBox.textContent = `${price}` + '€/jour';
+
+        return priceBox;
+    }
    
-    return { getUserCardProfile, getUserMedium }
+    return { getUserCardProfile, getUserMedium, getPriceTotalLikesBox}
 }
