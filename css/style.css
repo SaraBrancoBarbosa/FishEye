@@ -209,13 +209,13 @@ header h1 {
   height: 42px;
   fill: white;
 }
-.contact_modal .modal .header_form h1 {
+.contact_modal .modal .header_form h2 {
   font-size: 4rem;
   font-weight: normal;
   text-align: left;
 }
 @media screen and (max-width: 768px) {
-  .contact_modal .modal .header_form h1 {
+  .contact_modal .modal .header_form h2 {
     font-size: 3rem;
   }
 }
@@ -570,23 +570,15 @@ header h1 {
 .filter_box {
   position: relative;
 }
-.filter-icon {
+.filter_icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   font-size: 1rem;
   -webkit-transition: 400ms ease;
   transition: 400ms ease;
   -webkit-transform: scaleY(-1);
           transform: scaleY(-1);
-}
-.filter_button:focus {
-  border-radius: 5px 5px 0px 0px;
-  -webkit-transition: 400ms ease;
-  transition: 400ms ease;
-}
-.filter_button:focus .filter-icon {
-  -webkit-transform: scaleY(1);
-          transform: scaleY(1);
-  -webkit-transition: 400ms ease;
-  transition: 400ms ease;
 }
 .filter_dropdown {
   display: none;
@@ -595,8 +587,11 @@ header h1 {
       -ms-flex-direction: column;
           flex-direction: column;
   position: absolute;
-  top: 70px;
+  top: 62px;
   left: 0px;
+  padding-top: 8px;
+  border-radius: 5px;
+  background-color: #901C1C;
   -webkit-animation-name: modalopen;
           animation-name: modalopen;
   -webkit-animation-duration: 0.8s;
@@ -685,6 +680,9 @@ header h1 {
       -ms-flex-align: center;
           align-items: center;
   gap: 5px;
+}
+.photographer_medias figure figcaption .like_counter .like_icon {
+  cursor: pointer;
 }
 @media screen and (max-width: 768px) {
   .photographer_medias {

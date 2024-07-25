@@ -32,19 +32,19 @@
           <button  class="contact_button">Contactez-moi</button>
         </div>
 
-        <div tabindex="" class="filter">
+        <div class="filter">
           <p tabindex="0">Trier par</p>
           <div class="filter_box">
-            <button tabindex="" class="filter_button" aria-label="Ouvrir le filtre" role="button" aria-haspopup="listbox" aria-expanded="false">
+            <button tabindex="0" class="filter_button" role="button">
               Popularité
-              <i class="fa-solid fa-chevron-up filter-icon" aria-hidden="true"></i>
+              <i tabindex="0" class="fa-solid fa-chevron-up filter_icon" aria-hidden="true" aria-haspopup="listbox" aria-expanded="false"></i>
               <span class="sr-only">Options du filtre</span> 
             </button>
             <ul class="filter_dropdown" role="listbox" aria-activedescendant="" aria-selected="true">
-              <li class="filter_button first_filter filter_date">
+              <li tabindex="0" class="filter_button first_filter filter_date">
                 Date
               </li>
-              <li class="filter_button last_filter filter_title">
+              <li tabindex="0" class="filter_button last_filter filter_title">
                 Titre
               </li>
             </ul>
@@ -55,88 +55,6 @@
         </div>
 
       </main>
-
-      <!-- Form -->
-      <div class="contact_modal">
-        <div class="modal" role="dialog" aria-labelledby="modalTitle">
-          <div class="header_form">
-            <h1 id="modalTitle">Contactez-moi</h1>
-            <button type="button" class="close_button" aria-label="Fermer le formulaire">
-              <img src="./assets/icons/close_form.svg" class="close_contact_button" alt="Fermer le formulaire"/>
-            </button>
-          </div>
-          <form
-            method="get"
-            onsubmit="validate();"
-          >
-
-            <div class="formData">
-              <label for="first">Prénom</label>
-              <input
-                class="text-control"
-                type="text"
-                id="first"
-                name="first"
-                value=""
-                aria-required=true
-              />
-            </div>
-            <div class="formData">
-              <label for="last">Nom</label>
-              <input
-                class="text-control"
-                type="text"
-                id="last"
-                name="last"
-                value=""
-                aria-required=true
-              />
-            </div>
-            <div class="formData">
-              <label for="email">E-mail</label>
-              <input
-                class="text-control"
-                type="email"
-                id="email"
-                name="email"
-                aria-required=true
-              />
-            </div>
-            <div class="formData">
-              <label for="user-message">Votre message</label>
-              <textarea
-                class="text-control"
-                type="email"
-                id="user-message"
-                name="user-message"
-                aria-required=true></textarea
-              >
-            </div>
-
-            <button class="contact_button submit_button" type="submit">Envoyer</button>
-
-          </form>
-        </div>
-      </div>
-
-      <!-- Lightbox -->
-      <div class="lightbox_modal" aria-label="Apperçu plein écran du média">
-        <div class="modal" role="dialog">
-          <button tabindex="0" type="button" class="close_button" aria-label="Fermer l'apperçu du média">
-            <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Fermer l'apperçu du média"/>
-          </button>
-          <img src="./assets/icons/previous.svg" alt="Aller au media précédent" class="btn-prev"/>
-          <figure class="figure_open-modal">
-            <!-- Mais là c'est juste les img, pas les vidéos. Aussi, le alt doit inclure le titre correspondant des medium -->
-            <img class="open_modal medium-card_img" src="" alt=""/>
-            <figcaption>
-              <h3 class="medium-card_title"></h3>
-            </figcaption>
-          </figure>
-          <img src="./assets/icons/next.svg" alt="Aller au media suivant" class="btn-next"/>
-
-        </div>
-      </div>
       
       <!-- Template medium -->
       <template id="template-medium-card-image">
@@ -146,7 +64,7 @@
             <h3 tabindex="0" class="medium-card_title"></h3>
             <div class="like_counter"> 
               <p class="medium-card_likes"></p>
-              <i tabindex="0" class="fa-solid fa-heart" aria-label="likes"></i>
+              <i tabindex="0" class="fa-solid fa-heart like_icon" aria-label="likes"></i>
             </div>
           </figcaption>
         </figure>
@@ -160,7 +78,7 @@
             <h3 tabindex="0" class="medium-card_title"></h3>
             <div class="like_counter">
               <p class="medium-card_likes"></p>
-              <i tabindex="0" class="fa-solid fa-heart" aria-label="likes"></i>
+              <i tabindex="0" class="fa-solid fa-heart like-on-click" aria-label="Aimer le média"></i>
             </div>
           </figcaption>
         </figure>
@@ -172,6 +90,88 @@
     <div class="total-likes">
       <span class="like-count">0</span>
       <p class="price-box"></p>
+    </div>
+
+    <!-- Form -->
+    <div class="contact_modal">
+      <div class="modal" role="dialog" aria-labelledby="modalTitle">
+        <div class="header_form">
+          <h2 id="modalTitle">Contactez-moi</h2>
+          <button type="button" class="close_button" aria-label="Fermer le formulaire">
+            <img src="./assets/icons/close_form.svg" class="close_contact_button" alt="Fermer le formulaire"/>
+          </button>
+        </div>
+        <form
+          method="get"
+          onsubmit="validate();"
+        >
+
+          <div class="formData">
+            <label for="first">Prénom</label>
+            <input
+              class="text-control"
+              type="text"
+              id="first"
+              name="first"
+              value=""
+              aria-required=true
+            />
+          </div>
+          <div class="formData">
+            <label for="last">Nom</label>
+            <input
+              class="text-control"
+              type="text"
+              id="last"
+              name="last"
+              value=""
+              aria-required=true
+            />
+          </div>
+          <div class="formData">
+            <label for="email">E-mail</label>
+            <input
+              class="text-control"
+              type="email"
+              id="email"
+              name="email"
+              aria-required=true
+            />
+          </div>
+          <div class="formData">
+            <label for="user-message">Votre message</label>
+            <textarea
+              class="text-control"
+              type="email"
+              id="user-message"
+              name="user-message"
+              aria-required=true></textarea
+            >
+          </div>
+
+          <button class="contact_button submit_button" type="submit">Envoyer</button>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox_modal" aria-label="Apperçu plein écran du média">
+      <div class="modal" role="dialog">
+        <button tabindex="0" type="button" class="close_button" aria-label="Fermer l'apperçu du média">
+          <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Fermer l'apperçu du média"/>
+        </button>
+        <img src="./assets/icons/previous.svg" alt="Aller au media précédent" class="btn-prev"/>
+        <figure class="figure_open-modal">
+          <!-- Mais là c'est juste les img, pas les vidéos. Aussi, le alt doit inclure le titre correspondant des medium -->
+          <img class="open_modal medium-card_img" src="" alt=""/>
+          <figcaption>
+            <h3 class="medium-card_title"></h3>
+          </figcaption>
+        </figure>
+        <img src="./assets/icons/next.svg" alt="Aller au media suivant" class="btn-next"/>
+
+      </div>
     </div>
   
   </body>

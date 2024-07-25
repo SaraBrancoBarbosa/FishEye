@@ -79,31 +79,22 @@
         position: relative;
     }
 
-    &-icon {
+    &_icon {
+        display: flex;
         font-size: 1rem;
         transition: 400ms ease;
         transform: scaleY(-1);
     }
-
-    &_button {
-        &:focus {
-            border-radius: 5px 5px 0px 0px;
-            transition: 400ms ease;
-            //border-bottom: 2px solid white;
-
-            .filter-icon {
-                transform: scaleY(1);
-                transition: 400ms ease;
-            }
-        }
-    }
-
+        
     &_dropdown {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 70px;
+        top: 62px;
         left: 0px;
+        padding-top: 8px;
+        border-radius: 5px;
+        background-color: $primary-color;
         animation-name: modalopen;
         animation-duration: 0.8s;
 
@@ -173,6 +164,10 @@
                 display: flex;
                 align-items: center;
                 gap: 5px;
+
+                .like_icon {
+                    cursor: pointer;
+                }
             }
         }
     }

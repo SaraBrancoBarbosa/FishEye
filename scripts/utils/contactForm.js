@@ -6,6 +6,7 @@ const btnOpenModal = document.querySelector(".contact_button");
 const btnCloseModal = document.querySelector(".close_button");
 const btnSubmit = document.querySelector(".submit_button");
 const body = document.body;
+const wrapper = document.querySelector(".wrapper");
 
 // Form elements
 const firstName = document.getElementById("first");
@@ -32,7 +33,7 @@ function launchModal() {
   modal.addEventListener("click", closeModal); 
   modal.querySelector(".modal").addEventListener("click", stopPropagation);
 
-  // Pour focuser sur le bouton de fermeture lorsque la modale s'ouvre
+  // Focus on the closing button when opening the modal
   btnCloseModal.focus();
 
   btnCloseModal.addEventListener("click", closeModal);
@@ -44,6 +45,7 @@ function closeModal() {
   modal.style.display = "none";
   body.style.overflow = "auto";
 
+  wrapper.setAttribute("aria-hidden", false);
   modal.setAttribute("aria-hidden", true);
   modal.setAttribute("aria-modal", true);
 
