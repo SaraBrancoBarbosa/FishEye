@@ -35,16 +35,16 @@
         <div class="filter">
           <p tabindex="0">Trier par</p>
           <div class="filter_box">
-            <button tabindex="0" class="filter_button" role="button">
+            <button id="popularite" tabindex="0" class="filter_button" role="button">
               Popularité
               <i tabindex="0" class="fa-solid fa-chevron-up filter_icon" aria-hidden="true" aria-haspopup="listbox" aria-expanded="false"></i>
               <span class="sr-only">Options du filtre</span> 
             </button>
             <ul class="filter_dropdown" role="listbox" aria-activedescendant="" aria-selected="true">
-              <li tabindex="0" class="filter_button first_filter filter_date">
+              <li id="date" id tabindex="0" class="filter_button first_filter filter_date">
                 Date
               </li>
-              <li tabindex="0" class="filter_button last_filter filter_title">
+              <li id="titre" tabindex="0" class="filter_button last_filter filter_title">
                 Titre
               </li>
             </ul>
@@ -63,7 +63,7 @@
           <figcaption>
             <h3 tabindex="0" class="medium-card_title"></h3>
             <div class="like_counter"> 
-              <p class="medium-card_likes"></p>
+              <p tabindex="0" class="medium-card_likes"></p>
               <i tabindex="0" class="fa-solid fa-heart like_icon" aria-label="likes"></i>
             </div>
           </figcaption>
@@ -77,7 +77,7 @@
           <figcaption>
             <h3 tabindex="0" class="medium-card_title"></h3>
             <div class="like_counter">
-              <p class="medium-card_likes"></p>
+              <p tabindex="0" class="medium-card_likes"></p>
               <i tabindex="0" class="fa-solid fa-heart like-on-click" aria-label="Aimer le média"></i>
             </div>
           </figcaption>
