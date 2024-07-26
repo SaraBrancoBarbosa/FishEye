@@ -14,7 +14,6 @@ const wrapper = document.querySelector(".wrapper");
 
 /*********** Launching and closing lightbox ***********/
 
-// Function to prevent further propagation of the current event
 const stopMediaPropagation = (event) => { 
     event.stopPropagation();
 }
