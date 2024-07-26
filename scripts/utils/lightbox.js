@@ -4,11 +4,11 @@ import { photographerTemplate } from "../templates/photographer.js"
 
 // DOM elements
 const lightboxModal = document.querySelector(".lightbox_modal");
-const btnCloselightboxModal = document.querySelector(".close_button");
+const btnCloselightboxModal = document.querySelector(".close_media_button");
 const btnPrev = document.querySelector(".btn-prev");
 const btnNext = document.querySelector(".btn-next");
-const mediaImg = document.querySelector(".medium-card_img");
-const mediaVideo = document.querySelector(".medium-card_video");
+//const mediaImg = document.querySelector(".medium-card_img");
+//const mediaVideo = document.querySelector(".medium-card_video");
 const body = document.body;
 const wrapper = document.querySelector(".wrapper");
 
@@ -104,3 +104,9 @@ window.addEventListener("keydown",(e) => {
         goToPreviousSlide()
     }
  })
+
+/*********** Display the medium ***********/
+
+// Fournir le tableau des cards
+// Récupérer le tableau medium
+// Eventuellement faire un filter ou map (pour transformer le tableau de medium en tableau src)
