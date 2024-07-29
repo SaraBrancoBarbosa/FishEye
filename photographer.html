@@ -158,27 +158,27 @@
 
     <!-- Lightbox -->
     <div class="lightbox_modal" aria-label="Apperçu plein écran du média">
-      <div class="modal" role="dialog">
+      <div class="modal" role="dialog" aria-labelledby="lightboxTitle">
         <div class="modal-view">
-          <i class="fa-solid fa-chevron-left btn-prev btn-control"></i>
+          <button tabindex="0" type="button" class="close_button" aria-label="Fermer l'apperçu du média">
+            <i tabindex="0" class="fa-solid fa-xmark close_media_button"></i>
+            <span class="sr-only">Fermer l'apperçu du média</span> 
+          </button>
+          <i tabindex="0" class="fa-solid fa-chevron-left btn-prev btn-control"></i>
           <span class="sr-only">Aller au media précédent</span>
           <figure class="figure_open-modal">
-            <div class="media-card_content">
+            <div tabindex="0" class="media-card_content">
               <img class="open_modal medium-card_img" src="" alt=""/>
               <video class="open_modal medium-card_video" controls>
               </video>
             </div>
             <figcaption>
-              <h3 class="medium-card_title"></h3>
+              <h3 tabindex="0" id="lightboxTitle" class="medium-card_title"></h3>
             </figcaption>
           </figure>
-          <i class="fa-solid fa-chevron-right btn-next btn-control"></i>
+          <i tabindex="0" class="fa-solid fa-chevron-right btn-next btn-control"></i>
           <span class="sr-only">Aller au media suivant</span>
         </div>
-        <button tabindex="0" type="button" class="close_button" aria-label="Fermer l'apperçu du média">
-          <i class="fa-solid fa-xmark close_media_button"></i>
-          <span class="sr-only">Fermer l'apperçu du média</span> 
-        </button>
       </div>
     </div>
   
