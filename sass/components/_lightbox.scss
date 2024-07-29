@@ -12,46 +12,53 @@
     background-color: rgba(196, 196, 196, 0.4);
 
     .modal {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
+        &-view {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+            
+            figure {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                flex: 1;
+                height: 100%;
+            
+                .media-card_content {
+                    width: calc(100% - 40px);
+                    height: calc(100% - 40px);
+                }
+    
+                .medium-card_img, .medium-card_video {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+        
+                h3 {
+                    font-size: 1.5rem;
+                    font-weight: normal;
+                    color: $primary-color;
+                    padding-top: 10px;
+                }
+            }
+        }
+
         border-radius: 5px;
         background-color: white;
-        width: 100%;
-        max-width: fit-content;
+        width: calc(100% - 100px);
+        height: 100%;
+        max-width: 100%;
+        min-width: 300px;
         max-height: calc(100dvh - 70px);
-        padding: 10px;
-        overflow: hidden;
-        overflow-y: auto;
+        padding: 23px;
         position: relative;
         animation-name: modalopen;
         animation-duration: 0.8s;
 
-        .close_media_button {
-            cursor: pointer;
-            height: 35px;
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            cursor: pointer;
-        }
-
-        figure {
-            .lightbox_media {
-                max-width: 1050px;
-                max-height: calc(100dvh - 200px);
-                border-radius: 5px;
-
-                @include media-phone {
-                    max-width: 100%;
-                }
-            }
-    
-            h3 {
-                font-size: 1.5rem;
-                color: $primary-color;
-            }
-        }
     }
 }
