@@ -98,7 +98,8 @@
         <div class="header_form">
           <h2 id="modalTitle">Contactez-moi</h2>
           <button type="button" class="close_button" aria-label="Fermer le formulaire">
-            <img src="./assets/icons/close_form.svg" class="close_contact_button" alt="Fermer le formulaire"/>
+            <i class="fa-solid fa-xmark close_contact_button"></i>
+            <span class="sr-only">Fermer l'apperçu du média</span>
           </button>
         </div>
         <form
@@ -158,19 +159,26 @@
     <!-- Lightbox -->
     <div class="lightbox_modal" aria-label="Apperçu plein écran du média">
       <div class="modal" role="dialog">
+        <div class="modal-view">
+          <i class="fa-solid fa-chevron-left btn-prev btn-control"></i>
+          <span class="sr-only">Aller au media précédent</span>
+          <figure class="figure_open-modal">
+            <div class="media-card_content">
+              <img class="open_modal medium-card_img" src="" alt=""/>
+              <video class="open_modal medium-card_video" controls>
+              </video>
+            </div>
+            <figcaption>
+              <h3 class="medium-card_title"></h3>
+            </figcaption>
+          </figure>
+          <i class="fa-solid fa-chevron-right btn-next btn-control"></i>
+          <span class="sr-only">Aller au media suivant</span>
+        </div>
         <button tabindex="0" type="button" class="close_button" aria-label="Fermer l'apperçu du média">
-          <img src="./assets/icons/close_lightbox.svg" class="close_media_button" alt="Fermer l'apperçu du média"/>
+          <i class="fa-solid fa-xmark close_media_button"></i>
+          <span class="sr-only">Fermer l'apperçu du média</span> 
         </button>
-        <img src="./assets/icons/previous.svg" alt="Aller au media précédent" class="btn-prev"/>
-        <figure class="figure_open-modal">
-          <!-- Mais là c'est juste les img, pas les vidéos. Aussi, le alt doit inclure le titre correspondant des medium -->
-          <img class="open_modal medium-card_img" src="" alt=""/>
-          <figcaption>
-            <h3 class="medium-card_title"></h3>
-          </figcaption>
-        </figure>
-        <img src="./assets/icons/next.svg" alt="Aller au media suivant" class="btn-next"/>
-
       </div>
     </div>
   
