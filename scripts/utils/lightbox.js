@@ -112,9 +112,8 @@ const goToPreviousSlide = () => {
 btnPrev.addEventListener("click", goToPreviousSlide);
 btnNext.addEventListener("click", goToNextSlide);
 
-// Flèches du clavier
-
-lightboxModalContent.onkeydown = function(e){
+// Go to previous or next media by using the left and right keys
+window.onkeydown = function(e){
     if (e.keyCode === 39) {
         goToNextSlide()
     } else if (e.keyCode === 37) {
