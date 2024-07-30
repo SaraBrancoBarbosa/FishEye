@@ -73,6 +73,8 @@ function closeLightboxModal() {
 
     lightboxModal.removeEventListener("click", closeLightboxModal);
     lightboxModal.querySelector(".modal").removeEventListener("click", stopMediaPropagation);
+
+    document.querySelector(".open_modal").focus();
 }
 
 // Closes modal by pressing the escape key

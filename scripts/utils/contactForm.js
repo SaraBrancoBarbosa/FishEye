@@ -51,6 +51,8 @@ function closeModal() {
 
   modal.removeEventListener("click", closeModal);
   modal.querySelector(".modal").removeEventListener("click", stopPropagation);
+
+  document.querySelector(".contact_button").focus();
 }
 
 // Closes modal by pressing the escape key
