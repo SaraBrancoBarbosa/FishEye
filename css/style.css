@@ -340,7 +340,7 @@ header h1 {
 .lightbox_modal .modal {
   border-radius: 5px;
   background-color: white;
-  width: calc(100% - 100px);
+  width: calc(100% - 400px);
   height: 100%;
   max-width: 100%;
   min-width: 300px;

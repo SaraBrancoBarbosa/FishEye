@@ -12,6 +12,18 @@
     background-color: rgba(196, 196, 196, 0.4);
 
     .modal {
+        border-radius: 5px;
+        background-color: white;
+        width: calc(100% - 400px);
+        height: 100%;
+        max-width: 100%;
+        min-width: 300px;
+        max-height: calc(100dvh - 70px);
+        padding: 23px;
+        position: relative;
+        animation-name: modalopen;
+        animation-duration: 0.8s;
+
         &-view {
             display: flex;
             align-items: center;
@@ -47,18 +59,5 @@
                 }
             }
         }
-
-        border-radius: 5px;
-        background-color: white;
-        width: calc(100% - 100px);
-        height: 100%;
-        max-width: 100%;
-        min-width: 300px;
-        max-height: calc(100dvh - 70px);
-        padding: 23px;
-        position: relative;
-        animation-name: modalopen;
-        animation-duration: 0.8s;
-
     }
 }
