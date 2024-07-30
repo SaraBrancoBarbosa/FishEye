@@ -1,16 +1,18 @@
-import { photographerTemplate } from "../templates/photographer.js"
-
 /*********** Elements ***********/
 
 // DOM elements
 const lightboxModal = document.querySelector(".lightbox_modal");
+const lightboxModalContent = document.querySelector(".modal");
 const btnCloselightboxModal = document.querySelector(".close_media_button");
 const btnPrev = document.querySelector(".btn-prev");
 const btnNext = document.querySelector(".btn-next");
-//const mediaImg = document.querySelector(".medium-card_img");
-//const mediaVideo = document.querySelector(".medium-card_video");
 const body = document.body;
 const wrapper = document.querySelector(".wrapper");
+
+// Lightbox elements
+let lightboxMedia = [];
+let currentItemPosition = 0
+let lightboxPath = ''
 
 /*********** Launching and closing lightbox ***********/
 
@@ -19,13 +21,13 @@ const stopMediaPropagation = (event) => {
 }
 
 // Cette fonction est intégrée dans pages/photographer.js
-export function launchLightboxModal() {
+export function launchLightboxModal(path, media, index) {
     lightboxModal.style.display = "flex";
     body.style.overflow = "hidden"; 
 
     wrapper.setAttribute("aria-hidden", true);
-    lightboxModal.setAttribute("aria-hidden", false);
-    lightboxModal.setAttribute("aria-modal", false);
+    lightboxModalContent.setAttribute("aria-hidden", false);
+    lightboxModalContent.setAttribute("aria-modal", false);
 
     lightboxModal.addEventListener("click", closeLightboxModal); 
     lightboxModal.querySelector(".modal").addEventListener("click", stopMediaPropagation);
@@ -33,6 +35,33 @@ export function launchLightboxModal() {
     btnCloselightboxModal.focus();
 
     btnCloselightboxModal.addEventListener("click", closeLightboxModal);
+
+    lightboxMedia = media;
+    lightboxPath = path;
+    
+    openLightboxMedia(index);
+}
+
+function openLightboxMedia(index) {
+    currentItemPosition = index
+    const medium = lightboxMedia[index];
+    const figure = document.querySelector('.figure_open-modal');
+ 
+    const video = figure.querySelector('.medium-card_video')
+    const img = figure.querySelector('.medium-card_img')
+    const title = figure.querySelector('.medium-card_title')
+    title.textContent = medium.title;
+        
+    if (medium.video) {
+        video.src = lightboxPath + '/' + medium.video;
+        img.style.display = 'none';
+        video.style.display = 'flex';
+    } else {
+        img.src = lightboxPath + '/' + medium.image;
+        img.style.display = 'flex';
+        video.style.display = 'none';
+    }
+
 }
 
 function closeLightboxModal() {
@@ -53,59 +82,42 @@ window.addEventListener("keydown",(event) => {
     }
 });
 
+// Or by pressing the enter key on the closing button
+btnCloselightboxModal.onkeydown = function(event) {
+    if (event.keyCode == 13) {
+        closeLightboxModal()
+    }
+};
+
 /*********** Go to previous and next media ***********/
 
-let currentItemPosition = 0
-
 const goToNextSlide = () => {
-    if (currentItemPosition + 1 >=  mediaImg.length) {
-       
-        const lastItem = `.item-${currentItemPosition}`
-  
+    if (currentItemPosition + 1 >=  lightboxMedia.length) {
         currentItemPosition = 0
-        const currentItem = `.item-${currentItemPosition}`
-       
-        setNodeAttributes(lastItem, currentItem)
     } else {
         currentItemPosition += 1
-        const lastItem = `.item-${currentItemPosition - 1}`
-        const currentItem = `.item-${currentItemPosition}`
-       
-        setNodeAttributes(lastItem, currentItem)
     }
+    openLightboxMedia(currentItemPosition);
 }
-  
+
 const goToPreviousSlide = () => {
     if (currentItemPosition - 1 >=  0) {
         currentItemPosition -= 1
-        const currentItem = `.item-${currentItemPosition}`
-        const lastItem = `.item-${currentItemPosition + 1}`
-  
-        setNodeAttributes(lastItem, currentItem)
     } else {
-        const lastItem = `.item-${currentItemPosition}`
-       
-        currentItemPosition = 2
-        const currentItem = `.item-${currentItemPosition}`
-       
-        setNodeAttributes(lastItem, currentItem)
+        currentItemPosition = lightboxMedia.length - 1
     }
+    openLightboxMedia(currentItemPosition);
 }
 
 btnPrev.addEventListener("click", goToPreviousSlide);
 btnNext.addEventListener("click", goToNextSlide);
 
 // Flèches du clavier
-window.addEventListener("keydown",(e) => {
-    if (e.key === 39) {
+
+lightboxModalContent.onkeydown = function(e){
+    if (e.keyCode === 39) {
         goToNextSlide()
-    } else if (e.key === 37) {
+    } else if (e.keyCode === 37) {
         goToPreviousSlide()
     }
- })
-
-/*********** Display the medium ***********/
-
-// Fournir le tableau des cards
-// Récupérer le tableau medium
-// Eventuellement faire un filter ou map (pour transformer le tableau de medium en tableau src)
+ };
