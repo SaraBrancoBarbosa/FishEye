@@ -13,6 +13,18 @@
         align-items: center;
     }
 
+    .div_main:nth-child(1), .div_main:nth-child(4) {
+        justify-self: start;
+    }
+
+    .div_main:nth-child(2), .div_main:nth-child(5) {
+        justify-self: center;
+    }
+
+    .div_main:nth-child(3), .div_main:nth-child(6) {
+        justify-self: end;
+    }
+
     figure {
         display: flex;
         flex-direction: column;
@@ -63,6 +75,10 @@
 
     @include media-tablet {
         grid-template-columns: 1fr 1fr;
+        
+        .div_main:nth-child(n) {
+        justify-self: center;
+        }
     }
 
     @include media-phone {
