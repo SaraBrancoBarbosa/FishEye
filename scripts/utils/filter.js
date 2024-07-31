@@ -23,21 +23,23 @@ function closeBoxFilter() {
     iconFilter.style.transform = "scaleY(-1)";
 
     iconFilter.removeEventListener("click", closeBoxFilter);
+
+    iconFilter.focus();
 }
 
-// Open options event by clicking on the button
+// Open dropdown by clicking on the button
 iconFilter.onclick = () => {
     launchBoxFilter()
 }
 
-// Open options event by pressing the enter key
+// Open dropdown event by pressing the enter key
 iconFilter.onkeydown = function(e){
     if(e.keyCode == 13){
         launchBoxFilter()
     }
  };
 
- // Close options event by pressing the escape key
+ // Close dropdown event by pressing the escape key
 window.addEventListener("keydown",(event) => {
     if (event.key === 'Escape') {
         closeBoxFilter()
@@ -46,42 +48,46 @@ window.addEventListener("keydown",(event) => {
 
 /*********** Sort and filter the datas ***********/
 
-// J'hésite à faire un formulaire pour pouvoir inverser la place des trois éléments plus facilement
-// => label "trier par", et option value="popularité" par ex
-// Ou est-ce que je peux "déplacer" les mots avec la version actuelle (bouton + ul) ?
+// Lightbox elements
+let media = [];
+let filterPath = ''
 
-let populariteId = document.getElementById("popularite");
-let dateId = document.getElementById("date");
-let titreId = document.getElementById("titre");
+filterMedia = media;
+filterPath = path;
 
-for (let i = 0; 1 < medium.length; i++) {
-    const media = medium[i];
+const medium = filterMedia[index];
+const video = figure.querySelector('.medium-card_video')
+const img = figure.querySelector('.medium-card_img')
+
+const idPopularite = document.getElementById("popularite");
+const idDate = document.getElementById("date");
+const idTitre = document.getElementById("titre");
+
+function sortByTitle() {
+    medium.sort((a, b) => a.title.localeCompare(b.title));
 }
 
-// Filter event.
-populariteId.addEventListener("click", function () {
-    const mediumSorted = Array.from(medium);
-    mediumSorted.sort(function (a, b) {
-        return a.likes - b.likes;
-    })
-    return populariteId;
-});
+function sortByPopularity() {
+    medium.sort((a, b) => b.likes - a.likes);
+}
 
-dateId.addEventListener("click", function () {
-    const mediumSorted = Array.from(medium);
-    mediumSorted.sort(function (a, b) {
-        return a.date - b.date;
-    })
-    return dateId;
-});
+function sortByDate() {
+    medium.sort((a, b) => new Date(b.date) - new Date(a.date));
+}
 
-titreId.addEventListener("click", function () {
-    const mediumSorted = Array.from(medium);
-    mediumSorted.sort(function (a, b) {
-        return a.name - b.name;
-    })
-    return titreId;
-});
+// Ensuite pour "choisir" le filtre et l'afficher dans le bouton, faire un switch case ?
+const texteBouton = document.querySelector("filter_button");
 
-// Ensuite pour "choisir" le filtre, faire un switch case ?
-// case "title" alors return "titreId". Et par default: return "populariteId"
+switch (texteBouton) {
+    case sortByTitle():
+      console.log("Afficher idTitre dans le bouton");
+      break;
+    case sortByPopularity():
+        console.log("Afficher idPopularite dans le bouton");
+      break;
+    case sortByDate():
+        console.log("Afficher idDate dans le bouton");
+      break;
+    default:
+        console.log("Afficher idPopularite dans le bouton");
+  }
