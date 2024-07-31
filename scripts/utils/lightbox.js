@@ -61,7 +61,6 @@ function openLightboxMedia(index) {
         img.style.display = 'flex';
         video.style.display = 'none';
     }
-
 }
 
 function closeLightboxModal() {
@@ -122,3 +121,16 @@ window.onkeydown = function(e){
         goToPreviousSlide()
     }
  };
+
+ // Go to previous or next media by using the enter key
+ btnPrev.onkeydown = function(event) {
+    if (event.keyCode == 13) {
+        goToPreviousSlide()
+    }
+};
+
+btnNext.onkeydown = function(event) {
+    if (event.keyCode == 13) {
+        goToNextSlide()
+    }
+};
