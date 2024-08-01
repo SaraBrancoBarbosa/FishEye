@@ -35,16 +35,16 @@
         <div class="filter">
           <p tabindex="0">Trier par</p>
           <div class="filter_box">
-            <button id="popularite" tabindex="0" class="filter_button" role="button">
-              Popularité
+            <button class="filter_button" role="button">
+              <span tabindex="0" id="actif" class="filter_item">Popularité</span>
               <i tabindex="0" class="fa-solid fa-chevron-up filter_icon" aria-hidden="true" aria-haspopup="listbox" aria-expanded="false"></i>
               <span class="sr-only">Options du filtre</span> 
             </button>
             <ul class="filter_dropdown" role="listbox" aria-activedescendant="" aria-selected="true">
-              <li id="date" id tabindex="0" class="filter_button first_filter">
+              <li tabindex="0" class="filter_button first_filter filter_item">
                 Date
               </li>
-              <li id="titre" tabindex="0" class="filter_button last_filter">
+              <li tabindex="0" class="filter_button last_filter filter_item">
                 Titre
               </li>
             </ul>
@@ -58,7 +58,7 @@
       
       <!-- Template medium -->
       <template id="template-medium-card-image">
-        <figure>
+        <figure class="card">
           <img tabindex="0" class="open_modal medium-card_img" src="" alt="">
           <figcaption>
             <h3 tabindex="0" class="medium-card_title"></h3>
@@ -71,7 +71,7 @@
       </template>
 
       <template id="template-medium-card-video">
-        <figure>
+        <figure class="card">
           <video tabindex="0" class="open_modal medium-card_video" controls>
           </video>
           <figcaption>

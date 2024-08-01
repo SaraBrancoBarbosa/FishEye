@@ -1,5 +1,6 @@
 import { photographerTemplate } from "../templates/photographer.js"
 import { launchLightboxModal } from "../utils/lightbox.js"
+import { getFilterElements } from "../utils/filter.js"
 
 async function getPhotographer() {
     
@@ -29,8 +30,11 @@ async function displayData(photographer, media) {
 
     const path = '/assets/photographers/'+(photographer.name.split(' ')[0].replaceAll('-', ' '));
 
-    media.forEach((medium, index) => {
+    media.forEach((medium, i) => {
         const card = photographerModel.getUserMedium(photographer, medium)
+        const figure = card.querySelector('.card')
+        figure.id = medium.id
+        console.log(card)
         
         let src = null; 
         if (medium.video) {
@@ -39,20 +43,22 @@ async function displayData(photographer, media) {
             src = card.querySelector('.medium-card_img')
             }
 
-        // Lightbox  
+        // Opens Lightbox by clicking
         src.onclick = () => {
-            launchLightboxModal(path, media, index)
+            launchLightboxModal(path, media, i)
         }
         // Opens Lightbox by pressing the enter key
         src.onkeydown = function(e){
-            if(e.keyCode == 13){
-                launchLightboxModal(path, media, index)
+            if(e.key === 'Enter' || e.key === 'Space'){
+                launchLightboxModal(path, media, i)
             }
          };
-        
 
-        photographerMedias.appendChild(card)
+        photographerMedias.appendChild(figure)
     })
+
+    getFilterElements(media);
+    
 }
 
 export async function initPhotographer() {

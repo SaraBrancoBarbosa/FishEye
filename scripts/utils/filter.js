@@ -4,10 +4,8 @@
 const btnFilter = document.querySelector(".filter_button");
 const dropdownFilter = document.querySelector(".filter_dropdown");
 const iconFilter = document.querySelector(".filter_icon");
-const boxFilter = document.querySelector(".filter_box");
 
 /*********** Launching and closing lightbox ***********/
-
 
 function launchBoxFilter() {
 	dropdownFilter.style.display = "flex";
@@ -43,51 +41,63 @@ iconFilter.onkeydown = function(e){
 window.addEventListener("keydown",(event) => {
     if (event.key === 'Escape') {
         closeBoxFilter()
+        iconFilter.focus();
     }
   });
 
 /*********** Sort and filter the datas ***********/
 
 // Lightbox elements
-let media = [];
-let filterPath = ''
+export function getFilterElements(pMedia) {
 
-filterMedia = media;
-filterPath = path;
+    const idActif = document.getElementById("actif");
+    const items = [...document.querySelectorAll(".filter_item")];
 
-const medium = filterMedia[index];
-const video = figure.querySelector('.medium-card_video')
-const img = figure.querySelector('.medium-card_img')
+    function sortByTitle() {
+        pMedia.sort((a, b) => a.title.localeCompare(b.title));
+    }
 
-const idPopularite = document.getElementById("popularite");
-const idDate = document.getElementById("date");
-const idTitre = document.getElementById("titre");
+    function sortByPopularity() {
+        pMedia.sort((a, b) => b.likes - a.likes);
+    }
 
-function sortByTitle() {
-    medium.sort((a, b) => a.title.localeCompare(b.title));
+    function sortByDate() {
+        pMedia.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    items.forEach(item => {
+        const sortItem = () => {
+            // On swap les noms
+            const actifText = idActif.textContent.trim()
+            const itemText = item.textContent.trim()
+            idActif.textContent = itemText
+            item.textContent = actifText
+
+            // Tri des medias
+            if (itemText === "Popularité") {
+                sortByPopularity()
+            } else if (itemText === "Titre") {
+                sortByTitle()
+            } else if (itemText === "Date") {
+                sortByDate()
+            }
+            // Reconstruction des vignettes
+            const photographerMedias = document.querySelector('.photographer_medias');
+            const cards = [...photographerMedias.querySelectorAll('.card')];
+            cards.forEach(card => card.remove());
+            
+            pMedia.forEach(media => {
+                const card = cards.find(card => ''+card.id === ''+media.id)
+                console.log(card, media.id)
+                photographerMedias.appendChild(card)
+            })
+        }
+
+        item.onclick = sortItem
+        item.onkeydown = (e) => {
+            if(e.key === 'Enter' || e.key === 'Space'){
+                sortItem()
+            }
+        }
+    })  
 }
-
-function sortByPopularity() {
-    medium.sort((a, b) => b.likes - a.likes);
-}
-
-function sortByDate() {
-    medium.sort((a, b) => new Date(b.date) - new Date(a.date));
-}
-
-// Ensuite pour "choisir" le filtre et l'afficher dans le bouton, faire un switch case ?
-const texteBouton = document.querySelector("filter_button");
-
-switch (texteBouton) {
-    case sortByTitle():
-      console.log("Afficher idTitre dans le bouton");
-      break;
-    case sortByPopularity():
-        console.log("Afficher idPopularite dans le bouton");
-      break;
-    case sortByDate():
-        console.log("Afficher idDate dans le bouton");
-      break;
-    default:
-        console.log("Afficher idPopularite dans le bouton");
-  }
