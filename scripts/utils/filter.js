@@ -30,24 +30,23 @@ iconFilter.onclick = () => {
     launchBoxFilter()
 }
 
-// Open dropdown event by pressing the enter key
+// Open dropdown event by pressing the enter and space keys
 iconFilter.onkeydown = function(e){
-    if(e.keyCode == 13){
+    if(e.key === "Enter" || e.key === "Space"){
         launchBoxFilter()
     }
  };
 
- // Close dropdown event by pressing the escape key
-window.addEventListener("keydown",(event) => {
-    if (event.key === 'Escape') {
+// Close dropdown event by pressing the escape key
+window.onkeydown = function(e){
+    if(e.key === "Escape") {
         closeBoxFilter()
         iconFilter.focus();
     }
-  });
+};
 
 /*********** Sort and filter the datas ***********/
 
-// Lightbox elements
 export function getFilterElements(pMedia) {
 
     const idActif = document.getElementById("actif");
@@ -82,12 +81,12 @@ export function getFilterElements(pMedia) {
                 sortByDate()
             }
             // Reconstruction des vignettes
-            const photographerMedias = document.querySelector('.photographer_medias');
-            const cards = [...photographerMedias.querySelectorAll('.card')];
+            const photographerMedias = document.querySelector(".photographer_medias");
+            const cards = [...photographerMedias.querySelectorAll(".card")];
             cards.forEach(card => card.remove());
             
             pMedia.forEach(media => {
-                const card = cards.find(card => ''+card.id === ''+media.id)
+                const card = cards.find(card => ""+card.id === ""+media.id)
                 console.log(card, media.id)
                 photographerMedias.appendChild(card)
             })
@@ -95,7 +94,7 @@ export function getFilterElements(pMedia) {
 
         item.onclick = sortItem
         item.onkeydown = (e) => {
-            if(e.key === 'Enter' || e.key === 'Space'){
+            if(e.key === "Enter" || e.key === "Space"){
                 sortItem()
             }
         }

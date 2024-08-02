@@ -56,11 +56,11 @@ function closeModal() {
 }
 
 // Closes modal by pressing the escape key
-window.addEventListener("keydown",(event) => {
-  if (event.key === 'Escape') {
+window.onkeydown = function(e){
+  if(e.key === "Escape") {
     closeModal()
   }
-});
+};
 
 // Launches modal event by clicking on the button
 btnOpenModal.addEventListener("click", launchModal);
@@ -69,11 +69,11 @@ btnOpenModal.addEventListener("click", launchModal);
 
 async function getPhotographerIdForm() {
     
-  const id = new URLSearchParams(window.location.search).get('id')
-  const database = await fetch('data/database.json')
+  const id = new URLSearchParams(window.location.search).get("id")
+  const database = await fetch("data/database.json")
   .then(response => response.json());    
   
-  return database.photographers.find(p => ''+p.id === ''+id) 
+  return database.photographers.find(p => ""+p.id === ""+id) 
   
 }
 

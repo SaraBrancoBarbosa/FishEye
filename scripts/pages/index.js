@@ -3,7 +3,7 @@ import { indexTemplate } from "../templates/index.js";
 async function getPhotographers() {
     
     // Récupération des données depuis le fichier JSON   
-    const database = await fetch('data/database.json')
+    const database = await fetch("data/database.json")
     .then(response => response.json());    
     
     // On retourne le tableau photographers une fois les données récupérées
@@ -24,8 +24,13 @@ async function displayData(photographers) {
     });
 }
 
-export async function init() {
+async function init() {
     // Récupère les datas des photographes
     const { photographers } = await getPhotographers();
     displayData(photographers);
+}
+
+// le window.onload prépare le script et quand la page est chargée, il est prêt
+window.onload = () => {
+    init()
 }
