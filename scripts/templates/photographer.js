@@ -1,3 +1,6 @@
+import { getUserImage } from "../factories/media.js"
+import { getUserVideo } from "../factories/media.js"
+
 export function photographerTemplate(photographer) {
     const { name, portrait, city, country, tagline, price } = photographer;
 
@@ -61,7 +64,8 @@ export function photographerTemplate(photographer) {
         return priceBox;
     }
 
-    // To get the respective medium for each photographer. It contains the img and video functions
+    // To get the respective medium for each photographer. It contains the img and video functions.
+    // These functions are imported from the "factories" folder.
     function getUserMedium(photographer, medium) {
         
         // Cut the names to go to the right folders
@@ -72,42 +76,6 @@ export function photographerTemplate(photographer) {
         } 
 
         return getUserImage(path, medium)
-    }
-
-    // To get the images
-    function getUserImage(path,medium) {
-
-        const {image, title, likes, alt} = medium;
-        const template = document.getElementById("template-medium-card-image");
-
-        // On appelle le template du HTML. cloneNode crée un fragment, une balise vide sans nom
-        // Card c'est figure
-        const card = template.content.cloneNode(true);
-        const img = card.querySelector(".medium-card_img");
-        img.src = `${path}/${image}`;
-        img.alt = `${title}.` + ` ${alt}`;
-        
-        card.querySelector(".medium-card_title").textContent = `${title}`;
-        card.querySelector(".medium-card_likes").textContent = `${likes}`;
-        
-        return card;
-    }
-
-    // To get the videos
-    function getUserVideo(path,medium) {
-
-        const {title, likes, alt} = medium;
-        const template = document.getElementById("template-medium-card-video");
-        
-        const card = template.content.cloneNode(true);
-        const video = card.querySelector(".medium-card_video");
-        video.src = `${path}/${medium.video}`;
-        video.setAttribute("aria-label", `${alt}`);
-        
-        card.querySelector(".medium-card_title").textContent = `${title}`;
-        card.querySelector(".medium-card_likes").textContent = `${likes}`;
-
-        return card;
     }
 
     return { getUserCardProfile, getUserMedium, getPriceTotalLikesBox}
