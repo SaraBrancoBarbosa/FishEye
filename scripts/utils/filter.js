@@ -38,41 +38,61 @@ iconFilter.onkeydown = function(e){
  };
 
 // Close dropdown event by pressing the escape key
-window.onkeydown = function(e){
-    if(e.key === "Escape") {
+window.addEventListener("keydown",(e) => {
+    if (e.key === "Escape") {
         closeBoxFilter()
-        iconFilter.focus();
     }
-};
+});
 
 /*********** Sort and filter the datas ***********/
 
 export function getFilterElements(pMedia) {
 
+    // When isAscending returns true, the first click is in ascending order
+    let isAscending = true;
     const idActif = document.getElementById("actif");
     const items = [...document.querySelectorAll(".filter_item")];
 
     function sortByTitle() {
-        pMedia.sort((a, b) => a.title.localeCompare(b.title));
+        pMedia.sort((a, b) => {
+            if (isAscending) {
+                return a.title.localeCompare(b.title);
+            } else {
+                return b.title.localeCompare(a.title);
+            }
+        })
     }
 
     function sortByPopularity() {
-        pMedia.sort((a, b) => b.likes - a.likes);
+        pMedia.sort((a, b) => {
+            if (isAscending) {
+                return b.likes - a.likes;
+            } else {
+                return a.likes - b.likes;
+            }
+        })
     }
 
     function sortByDate() {
-        pMedia.sort((a, b) => new Date(b.date) - new Date(a.date));
+        pMedia.sort((a, b) => {
+            if (isAscending) {
+                return new Date(b.date) - new Date(a.date);
+            } else {
+                return new Date(a.date) - new Date(b.date);
+            }
+        })
     }
 
     items.forEach(item => {
         const sortItem = () => {
-            // On swap les noms
+            
+            // Swaps the names
             const actifText = idActif.textContent.trim()
             const itemText = item.textContent.trim()
             idActif.textContent = itemText
             item.textContent = actifText
 
-            // Tri des medias
+            // Sorts the media
             if (itemText === "Popularité") {
                 sortByPopularity()
             } else if (itemText === "Titre") {
@@ -80,22 +100,29 @@ export function getFilterElements(pMedia) {
             } else if (itemText === "Date") {
                 sortByDate()
             }
-            // Reconstruction des vignettes
+
+            // Rebuilds the cards
             const photographerMedias = document.querySelector(".photographer_medias");
             const cards = [...photographerMedias.querySelectorAll(".card")];
             cards.forEach(card => card.remove());
             
             pMedia.forEach(media => {
                 const card = cards.find(card => ""+card.id === ""+media.id)
-                console.log(card, media.id)
                 photographerMedias.appendChild(card)
             })
         }
 
-        item.onclick = sortItem
+        // Sorts by clicking
+        item.onclick = ()=> {
+            sortItem();
+            isAscending = !isAscending;
+        }
+        
+        // Sorts by using the keyboard
         item.onkeydown = (e) => {
             if(e.key === "Enter" || e.key === "Space"){
-                sortItem()
+                sortItem();
+                isAscending = !isAscending;
             }
         }
     })  
