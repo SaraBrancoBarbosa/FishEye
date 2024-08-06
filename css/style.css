@@ -763,6 +763,9 @@ header h1 {
 .photographer_medias figure figcaption .like_counter .like_icon {
   cursor: pointer;
 }
+.photographer_medias figure figcaption .liked {
+  color: #DB8876;
+}
 @media screen and (max-width: 768px) {
   .photographer_medias {
     grid-template-columns: 1fr;
