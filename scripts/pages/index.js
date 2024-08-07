@@ -2,11 +2,11 @@ import { indexTemplate } from "../templates/index.js";
 
 async function getPhotographers() {
     
-    // Récupération des données depuis le fichier JSON   
+    // Collects the JSON file's datas
     const database = await fetch("data/database.json")
     .then(response => response.json());    
     
-    // On retourne le tableau photographers une fois les données récupérées
+    // Returns the photographers' table when the datas are collected
     return (
         {
         photographers: database.photographers
@@ -25,12 +25,12 @@ async function displayData(photographers) {
 }
 
 async function init() {
-    // Récupère les datas des photographes
+    // Collects the photographers' datas
     const { photographers } = await getPhotographers();
     displayData(photographers);
 }
 
-// le window.onload prépare le script et quand la page est chargée, il est prêt
+// window.onload prepares the script and when the page is loaded, the script is ready
 window.onload = () => {
     init()
 }
