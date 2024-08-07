@@ -25,10 +25,12 @@ export function totalLikesMedia() {
                 // Si oui, on enlève le like
                 newLikes = currentLikes - 1;
                 likeIcon.classList.remove("liked");
+                likeIcon.setAttribute("aria-label", "J'ai enlevé mon like");
             } else {
                 // Sinon, on ajoute un like
                 newLikes = currentLikes + 1;
                 likeIcon.classList.add("liked");
+                likeIcon.setAttribute("aria-label", "J'ai ajouté un like");
             }
 
             // Met à jour le localStorage
@@ -38,12 +40,13 @@ export function totalLikesMedia() {
         });
     });
 
-    // Pour la box en bas à droite
+    // Pour la box en bas à droite, n'a pas été appelée pour le moment
     function getPriceTotalLikesBox() {
         const priceBox = document.querySelector(".price-box");
         const likeCounter = document.querySelector(".like-count");
         
         priceBox.innerHTML = `${price}` + "€/jour";
+        priceBox.tabIndex = "0";
 
         return priceBox;
     }

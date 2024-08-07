@@ -51,6 +51,8 @@ function openLightboxMedia(index) {
     const img = figure.querySelector(".medium-card_img")
     const title = figure.querySelector(".medium-card_title")
     title.textContent = medium.title;
+    img.alt = medium.title;
+    
         
     if (medium.video) {
         video.src = lightboxPath + "/" + medium.video;
@@ -61,6 +63,7 @@ function openLightboxMedia(index) {
         img.style.display = "flex";
         video.style.display = "none";
     }
+    console.log(index)
 }
 
 function closeLightboxModal() {
@@ -114,18 +117,18 @@ btnPrev.addEventListener("click", goToPreviousSlide);
 btnNext.addEventListener("click", goToNextSlide);
 
 // Go to previous or next media by using the left and right keys
-window.onkeydown = function(e){
-    if (e.key === 39) {
-        goToNextSlide()
-    } else if (e.key === 37) {
-        goToPreviousSlide()
+window.addEventListener("keydown", e => {
+    if (e.key == "ArrowLeft") {
+        goToPreviousSlide();
+    } else if (e.key == "ArrowRight") {
+        goToNextSlide();
     }
- };
+})
 
- // Go to previous or next media by using the enter key (on the icons)
+// Go to previous or next media by using the enter key (on the icons)
 btnPrev.onkeydown = function(e){
     if(e.key === "Enter"){
-        goToNextSlide()
+        goToPreviousSlide()
     }
  };
 

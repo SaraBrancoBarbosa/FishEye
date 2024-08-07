@@ -99,15 +99,10 @@ const errorMessage = {
 const removeErrorElement = (element) => {
   element.parentNode.setAttribute("data-error-visible", false);
   element.setAttribute("aria-invalid", false);
+  element.setAttribute("aria-errormessage", "");
 }
 
 /*********** Form elements functions ***********/
-
-/**
- * Validating function
- * @param {HTMLElement} element
- * @returns {boolean} True if element.value is valid
- */
 
 // First name and last name function
 const validateName = (element) => {
@@ -118,11 +113,12 @@ const validateName = (element) => {
   if (!(/^(.{2,})$/).test(nameValue)) {
     result = false;
     element.parentNode.dataset.error=errorMessage.nameValueMinimum;
+    element.setAttribute("aria-errormessage", errorMessage.nameValueMinimum);
     errorElement(element);
-    
   } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/).test(nameValue)) {
     result = false;
     element.parentNode.dataset.error=errorMessage.nameValueInvalid;
+    element.setAttribute("aria-errormessage", errorMessage.nameValueInvalid);
     errorElement(element);
   }
   return result;
@@ -137,6 +133,8 @@ const validateEmail = (element) => {
   if (!(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(emailValue)) {
     result = false;
     element.parentNode.dataset.error=errorMessage.emailValue;
+    element.setAttribute("aria-errormessage", errorMessage.emailValue);
+
     errorElement(element);
   }
   return result;
@@ -151,12 +149,14 @@ const validateEmail = (element) => {
   if (!(/^(.{2,})$/).test(userMessageValue)) {
     result = false;
     element.parentNode.dataset.error=errorMessage.userMessageValueMinimum;
+    element.setAttribute("aria-errormessage", errorMessage.userMessageValueMinimum);
     errorElement(element);
 
   // Ban chevrons 
   } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-][^\<\>]+$/).test(userMessageValue)) {
     result = false;
     element.parentNode.dataset.error=errorMessage.userMessageValueInvalid;
+    element.setAttribute("aria-errormessage", errorMessage.userMessageValueInvalid);
     errorElement(element);
   }
   return result;

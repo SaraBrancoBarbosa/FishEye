@@ -16,7 +16,7 @@ export function indexTemplate(photographer) {
 
         const img = document.createElement("img");
         img.setAttribute("src", profile);
-        img.alt = "0";
+        img.alt = "";
         img.setAttribute("aria-hidden", true)
 
         const figCaption = document.createElement("figcaption");

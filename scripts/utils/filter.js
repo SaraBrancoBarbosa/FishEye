@@ -48,7 +48,7 @@ window.addEventListener("keydown",(e) => {
 
 export function getFilterElements(pMedia) {
 
-    // When isAscending returns true, the first click is in ascending order
+    // When isAscending returns true, the first click/key is in ascending order
     let isAscending = true;
     const idActif = document.getElementById("actif");
     const items = [...document.querySelectorAll(".filter_item")];
@@ -56,8 +56,10 @@ export function getFilterElements(pMedia) {
     function sortByTitle() {
         pMedia.sort((a, b) => {
             if (isAscending) {
+                idActif.setAttribute("aria-label", "Trié par ordre croissant");
                 return a.title.localeCompare(b.title);
             } else {
+                idActif.setAttribute("aria-label", "Trié par ordre décroissant");
                 return b.title.localeCompare(a.title);
             }
         })
@@ -66,8 +68,10 @@ export function getFilterElements(pMedia) {
     function sortByPopularity() {
         pMedia.sort((a, b) => {
             if (isAscending) {
+                idActif.setAttribute("aria-label", "Trié par le plus populaire");
                 return b.likes - a.likes;
             } else {
+                idActif.setAttribute("aria-label", "Trié par le moins populaire");
                 return a.likes - b.likes;
             }
         })
@@ -76,8 +80,10 @@ export function getFilterElements(pMedia) {
     function sortByDate() {
         pMedia.sort((a, b) => {
             if (isAscending) {
+                idActif.setAttribute("aria-label", "Trié par dates les plus récentes");
                 return new Date(b.date) - new Date(a.date);
             } else {
+                idActif.setAttribute("aria-label", "Trié par dates les moins récentes");
                 return new Date(a.date) - new Date(b.date);
             }
         })
