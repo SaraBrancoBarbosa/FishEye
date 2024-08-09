@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site de photographes Fisheye">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
     <link rel="stylesheet" href="./css/style.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <script src="scripts/pages/photographer.js" type="module"></script>
-    <script src="/scripts/utils/contactForm.js" type="module" defer></script>
+    <script src="./scripts/pages/photographer.js" type="module"></script>
     <title>Fisheye - Photographes </title>
   </head>
 
@@ -30,21 +30,49 @@
         </div>
 
         <div class="filter">
-          <p tabindex="0">Trier par</p>
-          <div class="filter_box">
-            <button class="filter_button" role="button">
-              <span tabindex="0" id="actif" class="filter_item">Popularité</span>
-              <i tabindex="0" class="fa-solid fa-chevron-up filter_icon" aria-hidden="false" aria-haspopup="listbox" aria-expanded="false" role="button"></i>
-              <span class="sr-only">Options du filtre</span> 
-            </button>
-            <ul class="filter_dropdown" role="listbox" aria-activedescendant="" aria-selected="true">
-              <li tabindex="0" class="filter_button first_filter filter_item">
-                Date
-              </li>
-              <li tabindex="0" class="filter_button last_filter filter_item">
-                Titre
-              </li>
-            </ul>
+          <!-- Label -->
+          <label tabindex="0" for="sort-cards" aria-label="Tri des media" id="filter">Trier par</label>
+
+          <!-- Select -->
+          <div id="sort-cards" class="filter_box filter_button" role="listbox" aria-activedescendant="actif" aria-labelledby="filter">
+
+            <!-- Collapse/expand button -->
+            <div tabindex="0" class="filter_icon" aria-haspopup="listbox" aria-hidden="true" aria-expanded="false">
+              <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+              <span class="sr-only">Options du filtre</span>
+            </div>
+
+            <!-- Selected item -->
+              <div
+                tabindex="0"
+                role="option"
+                class="filter_item"
+                id="actif"
+                aria-selected="true"
+              >
+                Popularité
+              </div>
+
+              <!-- Items -->
+              <div class="filter_dropdown">
+                <div
+                  tabindex="0"
+                  role="option"
+                  aria-labelledby="filter"
+                  class="filter_button first_filter filter_item"
+                >
+                  Date
+                </div>
+                <div
+                  tabindex="0"
+                  role="option"
+                  aria-labelledby="filter"
+                  class="filter_button last_filter filter_item"
+                >
+                  Titre
+                </div>
+              </div>
+
           </div>
         </div>
 
@@ -61,7 +89,7 @@
             <h3 tabindex="0" class="medium-card_title"></h3>
             <div class="like_counter"> 
               <p tabindex="0" class="medium-card_likes"></p>
-              <i tabindex="0" class="fa-solid fa-heart like_icon" aria-label="Aimer le média"></i>
+              <i tabindex="0" class="fa-solid fa-heart like_icon" aria-label="Liker le média"></i>
             </div>
           </figcaption>
         </figure>
@@ -75,7 +103,7 @@
             <h3 tabindex="0" class="medium-card_title"></h3>
             <div class="like_counter">
               <p tabindex="0" class="medium-card_likes"></p>
-              <i tabindex="0" class="fa-solid fa-heart like_icon" aria-label="Aimer le média"></i>
+              <i tabindex="0" class="fa-solid fa-heart like_icon" aria-label="Liker le média"></i>
             </div>
           </figcaption>
         </figure>
@@ -85,7 +113,10 @@
 
     <!-- Total likes box -->
     <div tabindex="0" class="total-likes">
-      <span tabindex="0" class="like-count">0</span>
+      <div>
+        <span tabindex="0" class="like-count">0</span>
+        <i tabindex="0" class="fa-solid fa-heart like_icon" aria-label="Total des médias likés"></i>
+      </div>
       <p tabindex="0" class="price-box"></p>
     </div>
 
@@ -157,12 +188,29 @@
     <div class="lightbox_modal" aria-label="Apperçu plein écran du média">
       <div class="modal" role="dialog" aria-labelledby="lightboxTitle">
         <div class="modal-view">
+
+          <!-- Close button -->
           <button tabindex="0" type="button" class="close_button" aria-label="Fermer l'apperçu du média">
             <i tabindex="0" class="fa-solid fa-xmark close_media_button"></i>
             <span class="sr-only">Fermer l'apperçu du média</span> 
           </button>
-          <i tabindex="0" class="fa-solid fa-chevron-left btn-prev btn-control"></i>
-          <span class="sr-only">Aller au media précédent</span>
+          
+          <!-- Navigation -->
+          <div class="nav">
+            <!-- Left -->
+            <div>
+              <i tabindex="0" class="fa-solid fa-chevron-left btn-prev btn-control"></i>
+              <span class="sr-only">Aller au media précédent</span>
+            </div>
+        
+            <!-- Right -->
+            <div>
+              <i tabindex="0" class="fa-solid fa-chevron-right btn-next btn-control"></i>
+              <span class="sr-only">Aller au media suivant</span>
+            </div>
+          </div>
+
+          <!-- Media -->
           <figure class="figure_open-modal">
             <div tabindex="0" class="media-card_content">
               <img class="medium-card_img" src="" alt=""/>
@@ -173,8 +221,8 @@
               <h3 tabindex="0" id="lightboxTitle" class="medium-card_title"></h3>
             </figcaption>
           </figure>
-          <i tabindex="0" class="fa-solid fa-chevron-right btn-next btn-control"></i>
-          <span class="sr-only">Aller au media suivant</span>
+
+
         </div>
       </div>
     </div>
