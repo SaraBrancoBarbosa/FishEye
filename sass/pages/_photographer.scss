@@ -91,10 +91,12 @@
     gap: 20px;
     font-size: 1.125rem;
     font-weight: bold;
-    width: 100%;
+    align-self: start;
 
     &_box {
+        display: flex;
         position: relative;
+        flex-direction: row-reverse;
         z-index: 1;
     }
 
@@ -221,11 +223,11 @@
     background-color: $secondary-color;
     border-radius: 5px 5px 0px 0px;
     height: 68px;
-    width: 376px;
+    width: 350px;
     bottom: 0;
     right: 50px;
     color: black;
-    padding: 0px 20px;
+    padding: 0px 25px;
     font-size: 1.5rem;
 
     @include media-phone {

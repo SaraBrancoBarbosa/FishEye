@@ -1,48 +1,48 @@
 /*********** Elements ***********/
 
 // DOM elements
-const btnFilter = document.querySelector(".filter_button");
+//const btnFilter = document.querySelector(".filter_button");
 const dropdownFilter = document.querySelector(".filter_dropdown");
 const iconFilter = document.querySelector(".filter_icon");
+const containerFilter = document.querySelector(".filter");
 
 /*********** Launching and closing lightbox ***********/
 
-function launchBoxFilter() {
+function openBoxFilter() {
 	dropdownFilter.style.display = "flex";
     iconFilter.style.transform = "scaleY(1)";
-    
-    iconFilter.addEventListener("click", closeBoxFilter); 
-    
-    btnFilter.setAttribute("aria-expanded", true);
+    iconFilter.setAttribute("aria-expanded", true);
+    dropdownFilter.setAttribute("opened", true);
 }
 
 function closeBoxFilter() {
     dropdownFilter.style.display = "none";
     iconFilter.style.transform = "scaleY(-1)";
-
-    iconFilter.removeEventListener("click", closeBoxFilter);
-
+    iconFilter.setAttribute("aria-expanded", false);
+    dropdownFilter.setAttribute("opened", false);
     iconFilter.focus();
 }
 
-// Open dropdown by clicking on the button
-iconFilter.onclick = () => {
-    launchBoxFilter()
+function swapBoxFilter() {
+    if (dropdownFilter.getAttribute("opened")==="true") {
+        closeBoxFilter()
+    } else {
+        openBoxFilter()
+    } 
 }
+
+// Open dropdown by clicking on the button
+iconFilter.onclick = swapBoxFilter
 
 // Open dropdown event by pressing the enter and space keys
 iconFilter.onkeydown = function(e){
-    if(e.key === "Enter" || e.key === "Space"){
-        launchBoxFilter()
-    }
+    if (e.key === "Enter" || e.key === "Space"){ swapBoxFilter() }
  };
 
-// Close dropdown event by pressing the escape key
-window.addEventListener("keydown",(e) => {
-    if (e.key === "Escape") {
-        closeBoxFilter()
-    }
-});
+ // Close dropdown event by pressing the escape key
+ window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeBoxFilter()
+ })
 
 /*********** Sort and filter the datas ***********/
 
@@ -53,40 +53,21 @@ export function getFilterElements(pMedia) {
     const idActif = document.getElementById("actif");
     const items = [...document.querySelectorAll(".filter_item")];
 
+    const updateSortAttribute = (isAscending, nameUp, nameDown) => idActif.setAttribute("aria-label", "Trié par "+(isAscending ? nameUp : nameDown))
+    
     function sortByTitle() {
-        pMedia.sort((a, b) => {
-            if (isAscending) {
-                idActif.setAttribute("aria-label", "Trié par ordre croissant");
-                return a.title.localeCompare(b.title);
-            } else {
-                idActif.setAttribute("aria-label", "Trié par ordre décroissant");
-                return b.title.localeCompare(a.title);
-            }
-        })
+        updateSortAttribute(isAscending, "ordre croissant", "ordre décroissant")
+        pMedia.sort((a, b) => isAscending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title))
     }
 
     function sortByPopularity() {
-        pMedia.sort((a, b) => {
-            if (isAscending) {
-                idActif.setAttribute("aria-label", "Trié par le plus populaire");
-                return b.likes - a.likes;
-            } else {
-                idActif.setAttribute("aria-label", "Trié par le moins populaire");
-                return a.likes - b.likes;
-            }
-        })
+        updateSortAttribute(isAscending, "le plus populaire", "le moins populaire")
+        pMedia.sort((a, b) => isAscending ? b.likes - a.likes : a.likes - b.likes)
     }
 
     function sortByDate() {
-        pMedia.sort((a, b) => {
-            if (isAscending) {
-                idActif.setAttribute("aria-label", "Trié par dates les plus récentes");
-                return new Date(b.date) - new Date(a.date);
-            } else {
-                idActif.setAttribute("aria-label", "Trié par dates les moins récentes");
-                return new Date(a.date) - new Date(b.date);
-            }
-        })
+        updateSortAttribute(isAscending, "dates les plus récentes", "dates les moins récentes")
+        pMedia.sort((a, b) => isAscending ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date))
     }
 
     items.forEach(item => {
