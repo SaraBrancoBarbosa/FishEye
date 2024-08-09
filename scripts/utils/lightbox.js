@@ -21,7 +21,7 @@ const stopMediaPropagation = (event) => {
 }
 
 // Cette fonction est intégrée dans pages/photographer.js
-export function launchLightboxModal(path, media, index) {
+export function launchLightboxModal(pPath, pMedia, pMediaId) {
     lightboxModal.style.display = "flex";
     body.style.overflow = "hidden"; 
 
@@ -36,10 +36,34 @@ export function launchLightboxModal(path, media, index) {
 
     btnCloselightboxModal.addEventListener("click", closeLightboxModal);
 
-    lightboxMedia = media;
-    lightboxPath = path;
+    lightboxMedia = pMedia;
+    lightboxPath = pPath;
     
-    openLightboxMedia(index);
+    // On trouve dans le tableau media avec indexOf
+    openLightboxMedia(pMedia.indexOf(pMedia.find(m => m.id === pMediaId)));
+}
+
+// Closes modal by pressing the escape key
+const closeOnEscape = (e) => {
+    if (e.key === "Escape") {
+        closeLightboxModal()
+    }
+};
+
+// Or by pressing the enter key on the closing button
+btnCloselightboxModal.onkeydown = function(e){
+    if(e.key === "Enter"){
+        closeLightboxModal()
+    }
+ };
+
+// Go to previous or next media by using the enter key (on the icons)
+const navigate = e => {
+    if (e.key == "ArrowLeft") {
+        goToPreviousSlide()
+    } else if (e.key == "ArrowRight") {
+        goToNextSlide()
+    }
 }
 
 function openLightboxMedia(index) {
@@ -63,7 +87,6 @@ function openLightboxMedia(index) {
         img.style.display = "flex";
         video.style.display = "none";
     }
-    console.log(index)
 }
 
 function closeLightboxModal() {
@@ -76,32 +99,16 @@ function closeLightboxModal() {
     lightboxModal.removeEventListener("click", closeLightboxModal);
     lightboxModal.querySelector(".modal").removeEventListener("click", stopMediaPropagation);
 
+    window.removeEventListener("keydown", closeOnEscape);
+    window.removeEventListener("keydown", navigate);
+
     document.querySelector(".open_modal").focus();
 }
-
-// Closes modal by pressing the escape key
-window.addEventListener("keydown",(e) => {
-    if (e.key === "Escape") {
-        closeLightboxModal()
-    }
-});
-
-// Or by pressing the enter key on the closing button
-btnCloselightboxModal.onkeydown = function(e){
-    if(e.key === "Enter"){
-        closeLightboxModal()
-    }
- };
 
 /*********** Go to previous and next media ***********/
 
 const goToNextSlide = () => {
-    if (currentItemPosition + 1 >=  lightboxMedia.length) {
-        currentItemPosition = 0
-    } else {
-        currentItemPosition += 1
-    }
-    openLightboxMedia(currentItemPosition);
+    openLightboxMedia((currentItemPosition + 1) % lightboxMedia.length);
 }
 
 const goToPreviousSlide = () => {
@@ -110,7 +117,8 @@ const goToPreviousSlide = () => {
     } else {
         currentItemPosition = lightboxMedia.length - 1
     }
-    openLightboxMedia(currentItemPosition);
+    // On ne peut pas faire de % sur du négatif
+    openLightboxMedia((currentItemPosition - 1 + lightboxMedia.length) % lightboxMedia.length);
 }
 
 btnPrev.addEventListener("click", goToPreviousSlide);
@@ -124,16 +132,3 @@ window.addEventListener("keydown", e => {
         goToNextSlide();
     }
 })
-
-// Go to previous or next media by using the enter key (on the icons)
-btnPrev.onkeydown = function(e){
-    if(e.key === "Enter"){
-        goToPreviousSlide()
-    }
- };
-
-btnNext.onkeydown = function(e){
-    if(e.key === "Enter"){
-        goToNextSlide()
-    }
- };
