@@ -1,53 +1,78 @@
-export function totalLikesMedia() {    
+const updateLikeElement = (card, inc) => {
+    const likeElement = card.querySelector(".medium-card_likes");
+    // the first + converts a string to a number
+    likeElement.textContent = parseInt(+likeElement.textContent) + inc;
+}
 
-    // Fonction pour mettre à jour l'affichage des likes
-    function updateLikeDisplay(pContainer) {
-        const likeCount = pContainer.querySelector(".medium-card_likes");
+const likeMedia = (card, id, likeIds) => {
+    updateLikeElement(card, 1);
+    likeIds.push(id)
+    localStorage.setItem("likes", JSON.stringify(likeIds))
+    card.querySelector(".like_icon").style.color = "#DB8876";
+    card.querySelector(".like_icon").setAttribute("aria-label", "Média liké");
+}
 
-        // Récupère le nombre de likes du localStorage
-        const likes = localStorage.getItem(pContainer.dataset.id);
-        // Met à jour l'affichage
-        likeCount.textContent = likes;
+const unLikeMedia = (card, id, likeIds) => {
+    updateLikeElement(card, -1);
+    localStorage.setItem("likes", JSON.stringify(likeIds.filter(i => i!==id)))
+    card.querySelector(".like_icon").style.color = "#901C1C";
+    card.querySelector(".like_icon").setAttribute("aria-label", "Média unliké");
+}
+
+const updateLikeMedia = (card, id) => {
+    const ls = localStorage.getItem("likes");
+    if (ls) {
+        const likesArray = JSON.parse(ls);
+        if (likesArray.includes(id)) {
+            unLikeMedia(card, id, likesArray);
+        } else {
+            likeMedia(card, id, likesArray)
+        }
+    } else {
+        likeMedia(card, id, []);
     }
-        
-    // Initialisation des likes à partir du localStorage
-    document.querySelectorAll(".card").forEach(pContainer => {
-        // Met à jour l'affichage pour chaque image
-        updateLikeDisplay(pContainer);
+    updateGlobalLikes()
+}
 
-        const likeIcon = pContainer.querySelector(".like_icon");
+const updateGlobalLikes = () => {
+    const likeCounter = document.querySelector(".like-count");
+    const elements = [...document.querySelectorAll(".medium-card_likes")]
+    let likes = 0
+    elements.forEach(element => likes += (+element.textContent))
+    
+    likeCounter.textContent = likes
+}
+
+export function totalLikesMedia() {    
+    // ?? returns its right-hand side operand when its left-hand side operand is null or undefined, otherwise returns its left-hand side operand
+    const ls = localStorage.getItem("likes") ?? "[]"
+    const likesArray = JSON.parse(ls)
+
+    // Likes initialisation with localStorage
+    document.querySelectorAll(".card").forEach(card => {
+        if (likesArray.includes(card.id)) {
+            updateLikeElement(card, 1)
+        }
+
+        const likeIcon = card.querySelector(".like_icon");
         likeIcon.addEventListener("click", () => {
-            const currentLikes = parseInt(localStorage.getItem(pContainer.dataset.id));
-            let newLikes;
-
-            // Vérifie si le bouton est déjà ''liké''
-            if (likeIcon.classList.contains("liked")) {
-                // Si oui, on enlève le like
-                newLikes = currentLikes - 1;
-                likeIcon.classList.remove("liked");
-                likeIcon.setAttribute("aria-label", "J'ai enlevé mon like");
-            } else {
-                // Sinon, on ajoute un like
-                newLikes = currentLikes + 1;
-                likeIcon.classList.add("liked");
-                likeIcon.setAttribute("aria-label", "J'ai ajouté un like");
-            }
-
-            // Met à jour le localStorage
-            localStorage.setItem(pContainer.dataset.id, newLikes);
-            // Met à jour l'affichage
-            updateLikeDisplay(pContainer);
-        });
+            updateLikeMedia(card, card.id);
+        })    
+        
+        likeIcon.onkeydown = function(e){
+            if (e.key === "Enter") {
+            updateLikeMedia(card, card.id); }
+        };
     });
 
-    // Pour la box en bas à droite, n'a pas été appelée pour le moment
-    function getPriceTotalLikesBox() {
-        const priceBox = document.querySelector(".price-box");
-        const likeCounter = document.querySelector(".like-count");
-        
-        priceBox.innerHTML = `${price}` + "€/jour";
-        priceBox.tabIndex = "0";
+    updateGlobalLikes()
+}
 
-        return priceBox;
-    }
+export function getPriceTotalLikesBox(price) {
+    const priceBox = document.querySelector(".price-box");
+    
+    priceBox.textContent = `${price} €/jour`;
+    priceBox.tabIndex = "0";
+
+    return priceBox;
 }
