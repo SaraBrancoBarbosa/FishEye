@@ -1,7 +1,8 @@
 import { photographerTemplate } from "../templates/photographer.js"
 import { launchLightboxModal } from "../utils/lightbox.js"
 import { getFilterElements } from "../utils/filter.js"
-import {totalLikesMedia } from "../utils/totalLikes.js"
+import { getPriceTotalLikesBox, totalLikesMedia } from "../utils/totalLikes.js"
+import { contactForm } from "../utils/contactForm.js"
 
 async function getPhotographer() {
     
@@ -13,7 +14,7 @@ async function getPhotographer() {
     
     return (
         {
-            //.find to find anything to match. ''+p -> converting to string
+            // .find to find anything to match. ''+p -> converting to string
             photographer: database.photographers.find(p => ""+p.id === ""+id),
             // .filter allows to return all the matching elements
             media:database.media.filter(m => ""+m.photographerId === ""+id)
@@ -44,13 +45,13 @@ async function displayData(photographer, pMedia) {
 
         // Opens Lightbox by clicking
         src.onclick = () => {
-            launchLightboxModal(path, pMedia, i)
+            launchLightboxModal(path, pMedia, pMedium.id)
             console.log(path,pMedia, i)
         }
         // Opens Lightbox by pressing the enter and space keys
         src.onkeydown = function(e){
             if(e.key === "Enter" || e.key === "Space"){
-                launchLightboxModal(path, pMedia, i)
+                launchLightboxModal(path, pMedia, pMedium.id)
             }
          };
 
@@ -62,6 +63,12 @@ async function displayData(photographer, pMedia) {
 
     // Calls the likes function
     totalLikesMedia()
+
+    // Calls the likes box function
+    getPriceTotalLikesBox(photographer.price)
+
+    // Calls the contact form function
+    contactForm(photographer)
 }
 
 export async function initPhotographer() {
