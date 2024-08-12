@@ -2,7 +2,7 @@ import { getUserImage } from "../factories/media.js"
 import { getUserVideo } from "../factories/media.js"
 
 export function photographerTemplate(photographer) {
-    const { name, portrait, city, country, tagline, price } = photographer;
+    const { name, portrait, city, country, tagline } = photographer;
 
     const profile = `assets/photographers/${portrait}`;
 
@@ -54,17 +54,7 @@ export function photographerTemplate(photographer) {
         return (photographerHeader);
     }
 
-    // Maintenant il faut l'appeler dans le fichier /pages/photographer.js ... Mais où ?
-    function getPriceTotalLikesBox() {
-        const priceBox = document.querySelector(".price-box");
-        const likeCounter = document.querySelector(".like-count");
-        
-        priceBox.innerHTML = `${price}` + "€/jour";
-
-        return priceBox;
-    }
-
-    // To get the respective medium for each photographer. It contains the img and video functions.
+    // To get the respective media for each photographer. It contains the img and video functions.
     // These functions are imported from the "factories" folder.
     function getUserMedium(photographer, medium) {
         
@@ -78,5 +68,5 @@ export function photographerTemplate(photographer) {
         return getUserImage(path, medium)
     }
 
-    return { getUserCardProfile, getUserMedium, getPriceTotalLikesBox}
+    return { getUserCardProfile, getUserMedium }
 }
