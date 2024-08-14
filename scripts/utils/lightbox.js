@@ -14,13 +14,50 @@ let lightboxMedia = [];
 let currentItemPosition = 0
 let lightboxPath = ""
 
+/*********** Keys accessibility ***********/
+
+// Closes modal by pressing the escape key
+const closeOnEscape = (e) => {
+    if (e.key === "Escape") {
+        closeLightboxModal()
+    }
+};
+
+// Or by pressing the enter key on the closing button
+btnCloselightboxModal.onkeydown = function(e){
+    if(e.key === "Enter"){
+        closeLightboxModal()
+    }
+};
+
+// Go to previous or next media by using the left and right keys (on the icons)
+const navigate = e => {
+    if (e.key == "ArrowLeft") {
+        goToPreviousSlide()
+    } else if (e.key == "ArrowRight") {
+        goToNextSlide()
+    }
+}
+
+// Or by pressing the enter key on the icons
+btnPrev.onkeydown = function(e){
+    if(e.key === "Enter"){
+        goToPreviousSlide()
+    }
+ };
+
+ btnNext.onkeydown = function(e){
+    if(e.key === "Enter"){
+        goToNextSlide()
+    }
+};
+
 /*********** Launching and closing lightbox ***********/
 
 const stopMediaPropagation = (event) => { 
     event.stopPropagation();
 }
 
-// Cette fonction est intégrée dans pages/photographer.js
 export function launchLightboxModal(pPath, pMedia, pMediaId) {
     lightboxModal.style.display = "flex";
     body.style.overflow = "hidden"; 
@@ -41,29 +78,6 @@ export function launchLightboxModal(pPath, pMedia, pMediaId) {
     
     // On trouve dans le tableau media avec indexOf
     openLightboxMedia(pMedia.indexOf(pMedia.find(m => m.id === pMediaId)));
-}
-
-// Closes modal by pressing the escape key
-const closeOnEscape = (e) => {
-    if (e.key === "Escape") {
-        closeLightboxModal()
-    }
-};
-
-// Or by pressing the enter key on the closing button
-btnCloselightboxModal.onkeydown = function(e){
-    if(e.key === "Enter"){
-        closeLightboxModal()
-    }
- };
-
-// Go to previous or next media by using the enter key (on the icons)
-const navigate = e => {
-    if (e.key == "ArrowLeft") {
-        goToPreviousSlide()
-    } else if (e.key == "ArrowRight") {
-        goToNextSlide()
-    }
 }
 
 function openLightboxMedia(index) {
@@ -87,6 +101,14 @@ function openLightboxMedia(index) {
         img.style.display = "flex";
         video.style.display = "none";
     }
+
+    window.addEventListener("keydown", closeOnEscape);
+
+    // Navigation
+    window.addEventListener("keydown", navigate);
+
+    btnPrev.addEventListener("click", goToPreviousSlide);
+    btnNext.addEventListener("click", goToNextSlide);
 }
 
 function closeLightboxModal() {
@@ -112,23 +134,6 @@ const goToNextSlide = () => {
 }
 
 const goToPreviousSlide = () => {
-    if (currentItemPosition - 1 >=  0) {
-        currentItemPosition -= 1
-    } else {
-        currentItemPosition = lightboxMedia.length - 1
-    }
-    // On ne peut pas faire de % sur du négatif
+    // On ne peut pas faire de modulo % sur du négatif
     openLightboxMedia((currentItemPosition - 1 + lightboxMedia.length) % lightboxMedia.length);
 }
-
-btnPrev.addEventListener("click", goToPreviousSlide);
-btnNext.addEventListener("click", goToNextSlide);
-
-// Go to previous or next media by using the left and right keys
-window.addEventListener("keydown", e => {
-    if (e.key == "ArrowLeft") {
-        goToPreviousSlide();
-    } else if (e.key == "ArrowRight") {
-        goToNextSlide();
-    }
-})
