@@ -1,5 +1,4 @@
-import { getUserImage } from "../factories/media.js"
-import { getUserVideo } from "../factories/media.js"
+import { getUserImage, getUserVideo } from "../factories/media.js"
 
 export function photographerTemplate(photographer) {
     const { name, portrait, city, country, tagline } = photographer;
