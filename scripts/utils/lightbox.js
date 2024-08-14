@@ -76,7 +76,6 @@ export function launchLightboxModal(pPath, pMedia, pMediaId) {
     lightboxMedia = pMedia;
     lightboxPath = pPath;
     
-    // On trouve dans le tableau media avec indexOf
     openLightboxMedia(pMedia.indexOf(pMedia.find(m => m.id === pMediaId)));
 }
 
@@ -134,6 +133,5 @@ const goToNextSlide = () => {
 }
 
 const goToPreviousSlide = () => {
-    // On ne peut pas faire de modulo % sur du négatif
     openLightboxMedia((currentItemPosition - 1 + lightboxMedia.length) % lightboxMedia.length);
 }
