@@ -1,10 +1,8 @@
 /*********** Elements ***********/
 
 // DOM elements
-//const btnFilter = document.querySelector(".filter_button");
 const dropdownFilter = document.querySelector(".filter_dropdown");
 const iconFilter = document.querySelector(".filter_icon");
-const containerFilter = document.querySelector(".filter");
 
 /*********** Launching and closing lightbox ***********/
 
