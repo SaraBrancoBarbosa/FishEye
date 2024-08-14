@@ -95,9 +95,21 @@
 
     &_box {
         display: flex;
-        position: relative;
+        align-items: center;
+        justify-content: space-between;
         flex-direction: row-reverse;
+        position: relative;
         z-index: 1;
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: white;
+        padding: 20px;
+        width: 170px;
+        height: 70px;
+        background-color: $primary-color;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 400ms ease;
     }
 
     &_icon {
@@ -119,7 +131,7 @@
         animation-name: modalopen;
         animation-duration: 0.8s;
 
-        li::after {
+        .first_filter::after, .last_filter::after {
             content: "";
             border-top: 1px solid white;
             width: 126px;
@@ -133,6 +145,22 @@
     
         .last_filter {
             border-radius: 0px 0px 5px 5px;
+        }
+
+        .filter_item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: white;
+            padding: 20px;
+            width: 170px;
+            height: 70px;
+            background-color: $primary-color;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 400ms ease;
         }
     }
 }

@@ -23,22 +23,6 @@
     margin-top: 20px;
 }
 
-.filter_button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.125rem;
-    font-weight: bold;
-    color: white;
-    padding: 20px;
-    width: 170px;
-    height: 70px;
-    background-color: $primary-color;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 400ms ease;
-}
-
 .close_button {
     background-color: transparent;
     border-color: transparent;
