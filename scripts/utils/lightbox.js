@@ -105,7 +105,6 @@ function openLightboxMedia(index) {
 
     // Navigation
     window.addEventListener("keydown", navigate);
-
     btnPrev.addEventListener("click", goToPreviousSlide);
     btnNext.addEventListener("click", goToNextSlide);
 }

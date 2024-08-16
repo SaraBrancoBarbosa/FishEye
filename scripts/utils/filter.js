@@ -32,9 +32,9 @@ function swapBoxFilter() {
 // Open dropdown by clicking on the button
 iconFilter.onclick = swapBoxFilter
 
-// Open dropdown event by pressing the enter and space keys
+// Or by pressing the enter and space keys
 iconFilter.onkeydown = function(e){
-    if (e.key === "Enter" || e.key === "Space"){ swapBoxFilter() }
+    if (e.key === "Enter"){ swapBoxFilter() }
  };
 
  // Close dropdown event by pressing the escape key
@@ -46,7 +46,6 @@ iconFilter.onkeydown = function(e){
 
 export function getFilterElements(pMedia) {
 
-    // When isAscending returns true, the first click/key is in ascending order
     let isAscending = true;
     const idActif = document.getElementById("actif");
     const items = [...document.querySelectorAll(".filter_item")];
@@ -105,7 +104,7 @@ export function getFilterElements(pMedia) {
         
         // Sorts by using the keyboard
         item.onkeydown = (e) => {
-            if(e.key === "Enter" || e.key === "Space"){
+            if(e.key === "Enter"){
                 sortItem();
                 isAscending = !isAscending;
             }

@@ -4,8 +4,6 @@ export function getUserImage(path,medium) {
     const {image, title, likes, alt} = medium;
     const template = document.getElementById("template-medium-card-image");
 
-    // Calling the HTML template. cloneNode creates a fragment, an empty tag.
-    // Card is the figure tag of the template.
     const card = template.content.cloneNode(true);
     const img = card.querySelector(".medium-card_img");
     img.src = `${path}/${image}`;

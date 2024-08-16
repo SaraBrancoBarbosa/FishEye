@@ -6,7 +6,6 @@ import { contactForm } from "../utils/contactForm.js"
 
 async function getPhotographer() {
     
-    // Searches the photographers' ID in the URL bar
     const id = new URLSearchParams(window.location.search).get("id")
 
     const database = await fetch("data/database.json")
@@ -14,10 +13,8 @@ async function getPhotographer() {
     
     return (
         {
-            // .find to find anything to match. ''+p -> converting to string
             photographer: database.photographers.find(p => ""+p.id === ""+id),
-            // .filter allows to return all the matching elements
-            media:database.media.filter(m => ""+m.photographerId === ""+id)
+            media: database.media.filter(m => ""+m.photographerId === ""+id)
         }
     )
 }
@@ -31,7 +28,7 @@ async function displayData(photographer, pMedia) {
 
     const path = "/assets/photographers/"+(photographer.name.split(" ")[0].replaceAll("-", " "));
 
-    pMedia.forEach((pMedium, i) => {
+    pMedia.forEach((pMedium) => {
         const card = photographerModel.getUserMedium(photographer, pMedium)
         const figure = card.querySelector(".card")
         figure.id = pMedium.id
@@ -46,11 +43,10 @@ async function displayData(photographer, pMedia) {
         // Opens Lightbox by clicking
         src.onclick = () => {
             launchLightboxModal(path, pMedia, pMedium.id)
-            console.log(path,pMedia, i)
         }
-        // Opens Lightbox by pressing the enter and space keys
+        // Opens Lightbox by pressing the enter key
         src.onkeydown = function(e){
-            if(e.key === "Enter" || e.key === "Space"){
+            if(e.key === "Enter"){
                 launchLightboxModal(path, pMedia, pMedium.id)
             }
          };

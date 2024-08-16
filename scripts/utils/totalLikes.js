@@ -1,6 +1,5 @@
 const updateLikeElement = (card, inc) => {
     const likeElement = card.querySelector(".medium-card_likes");
-    // the first + converts a string to a number
     likeElement.textContent = parseInt(+likeElement.textContent) + inc;
 }
 
@@ -44,7 +43,6 @@ const updateGlobalLikes = () => {
 }
 
 export function totalLikesMedia() {    
-    // ?? returns its right-hand side operand when its left-hand side operand is null or undefined, otherwise returns its left-hand side operand
     const ls = localStorage.getItem("likes") ?? "[]"
     const likesArray = JSON.parse(ls)
 

@@ -53,11 +53,9 @@ export function photographerTemplate(photographer) {
         return (photographerHeader);
     }
 
-    // To get the respective media for each photographer. It contains the img and video functions.
-    // These functions are imported from the "factories" folder.
+    // To get the respective media for each photographer. It contains the imported img and video functions.
     function getUserMedium(photographer, medium) {
         
-        // Cut the names to go to the right folders
         const path = "/assets/photographers/"+(photographer.name.split(" ")[0].replaceAll("-", " ")+"/small");
 
         if (medium.video) {

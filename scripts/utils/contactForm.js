@@ -31,6 +31,9 @@ export const contactForm = (photographer) => {
     }
   };
 
+  // Adds photographer ID to the title
+  contactMe.innerHTML = "Contactez-moi<br>" + photographer.name;
+
   function launchModal() {
     modal.style.display = "flex";
     body.style.overflow = "hidden"; 
@@ -41,15 +44,12 @@ export const contactForm = (photographer) => {
     
     modal.addEventListener("click", closeModal); 
     modal.querySelector(".modal").addEventListener("click", stopPropagation);
+    btnCloseModal.addEventListener("click", closeModal);
+    window.addEventListener("keydown", onKeyDownModal)
 
-    // Focus on the closing button when opening the modal
     btnCloseModal.focus();
 
-    btnCloseModal.addEventListener("click", closeModal);
-
     btnSubmit.addEventListener("click", validate);
-
-    window.addEventListener("keydown", onKeyDownModal)
   }
 
   function closeModal() {
@@ -62,19 +62,15 @@ export const contactForm = (photographer) => {
 
     modal.removeEventListener("click", closeModal);
     modal.querySelector(".modal").removeEventListener("click", stopPropagation);
-    
     window.removeEventListener("keydown", onKeyDownModal)
-
+    
     btnOpenModal.focus();
   }
 
   // Launches modal event by clicking on the button
   btnOpenModal.addEventListener("click", launchModal);
 
-  // Adds photographer ID to the title
-  contactMe.innerHTML = "Contactez-moi<br>" + photographer.name;
-
-  /*********** Setting and removing the error messages ***********/
+  /*********** Setting and removing error messages ***********/
 
   const errorElement = (element) => {
     element.parentNode.setAttribute("data-error-visible", true);
@@ -108,6 +104,7 @@ export const contactForm = (photographer) => {
       element.parentNode.dataset.error=errorMessage.nameValueMinimum;
       element.setAttribute("aria-errormessage", errorMessage.nameValueMinimum);
       errorElement(element);
+      
     } else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/).test(nameValue)) {
       result = false;
       element.parentNode.dataset.error=errorMessage.nameValueInvalid;
@@ -165,23 +162,21 @@ export const contactForm = (photographer) => {
     result = validateEmail(email) && result;
     result = validateUserMessage(userMessage) && result;
 
-    // If all the fields are correct, the result is validated
     return result; 
   }
 
   /*********** Form submission ***********/
   const validate = (event) => {
     event.preventDefault();
-    if (!validateFields(event)) {
-    } else {
+    if (validateFields(event)) {
       closeModal();
+      
+      console.log({
+        firstName: firstName.value, 
+        lastName: lastName.value, 
+        email: email.value, 
+        userMessage: userMessage.value,
+      });
     }
-
-    console.log({
-      firstName: firstName.value, 
-      lastName: lastName.value, 
-      email: email.value, 
-      userMessage: userMessage.value,
-    });
   };
 }
