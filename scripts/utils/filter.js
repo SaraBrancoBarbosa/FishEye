@@ -4,7 +4,7 @@
 const dropdownFilter = document.querySelector(".filter_dropdown");
 const iconFilter = document.querySelector(".filter_icon");
 
-/*********** Launching and closing lightbox ***********/
+/*********** Launching and closing filter ***********/
 
 function openBoxFilter() {
 	dropdownFilter.style.display = "flex";
