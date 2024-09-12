@@ -56,7 +56,7 @@ export function photographerTemplate(photographer) {
     // To get the respective media for each photographer. It contains the imported img and video functions.
     function getUserMedium(photographer, medium) {
         
-        const path = "/assets/photographers/"+(photographer.name.split(" ")[0].replaceAll("-", " ")+"/small");
+        const path = "./assets/photographers/"+(photographer.name.split(" ")[0].replaceAll("-", " ")+"/small");
 
         if (medium.video) {
             return getUserVideo(path,medium)

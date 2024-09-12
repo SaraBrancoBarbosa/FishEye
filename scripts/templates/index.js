@@ -8,7 +8,7 @@ export function indexTemplate(photographer) {
         divMain.classList.add("div_main");
 
         const link = document.createElement("a");
-        link.href = `/photographer.html?id=${id}`;
+        link.href = `./photographer.html?id=${id}`;
         link.setAttribute("aria-label", name);
         link.tabIndex = "0";
         
